@@ -1,14 +1,76 @@
-extends layout
+doctype html
+html
+  head
+    title VIKING
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/css/styles.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+  body
+    .header
+      .container
+        .row
+          .col-md-5
+            // Logo
+            .logo
+              h1
+                a(href='index.html') VIKING
+          .col-md-2
+            //p #{user}
+            //a(href="/logout") Đăng xuất
+    .page-content
+      .row
+        .col-md-2
+          .sidebar.content-box
+            ul.nav
+              // Main menu
+              li.current
+                a(href="/home")
+                  i.glyphicon.glyphicon-home
+                  |  Thông báo
+              li.form
+                a(href='/viewTable')
+                  i.glyphicon.glyphicon-tasks
+                  |  Danh sách bảng
+              li.form
+                a(href='/viewTree')
+                  i.glyphicon.glyphicon-tasks
+                  |  Danh sách cây
+        .col-md-10
+          .row
+            .col-md-6
+              .content-box-large
+                .panel-heading
+                  .panel-title Giới thiệu
+                  .panel-options
+                .panel-body
+                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+                  br
+                  br
+                  |                            HÃY ĐỂ CHÚNG TÔI HỖ TRỢ BẠN PHÁT TRIỂN CÔNG VIỆC KINH DOANH CỦA MÌNH!
+    footer
+      .container
+        .copy.text-center
+          | Viking 2016
+          a(href='#') Website
+    script(src='https://code.jquery.com/jquery.js')
+    script(src='bootstrap/js/bootstrap.min.js')
+    script(src='js/custom.js')
 
-block content
-  if (!user)
-    a(href="/login") Login
-    br
-    a(href="/register") Register
-  if (user)
-    p You are currently logged in as #{user.username}
-    a(href="/logout") Logout
-    form(role='form', action="/viewTable",method="get", style='max-width: 300px;')
-      button.btn.btn-info(type='submit') Dạng bảng
-    form(role='form', action="/viewTree",method="get", style='max-width: 300px;')
-      button.btn.btn-info(type='submit') Dạng cây
+
+
+
+
+  //if (!user)
+  //  a(href="/login") Login
+  //  br
+  //  a(href="/register") Register
+  //if (user)
+  //  p You are currently logged in as #{user.username}
+  //  a(href="/logout") Logout
+  //  form(role='form', action="/viewTable",method="get", style='max-width: 300px;')
+  //    button.btn.btn-info(type='submit') Dạng bảng
+  //  form(role='form', action="/viewTree",method="get", style='max-width: 300px;')
+  //    button.btn.btn-info(type='submit') Dạng cây

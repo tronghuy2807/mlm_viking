@@ -10,42 +10,58 @@ html
         link(rel='stylesheet', href='/css/styles.css')
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
         script(src='/bootstrap/js/bootstrap.min.js')
-    body.login-bg
+    body
         .header
             .container
                 .row
-                    .col-md-12
+                    .col-md-5
                         // Logo
                         .logo
                             h1
                                 a(href='index.html') VIKING
-        .page-content.container
-            .col-md-10
-                .row
-                    .col-md-6
-                        .content-box-large
-                            .panel-heading
-                                .panel-title Danh sach nha dau tu
-                                .panel-options
-                                    a(href='#', data-rel='collapse')
-                                        i.glyphicon.glyphicon-refresh
-                                    a(href='#', data-rel='reload')
-                                        i.glyphicon.glyphicon-cog
-                            .panel-body
-                                table.table.table-striped
-                                    thead
-                                        tr
-                                            th Họ tên
-                                            th Địa chỉ email
-                                            th Số điện thoại
-                                            th Người giới thiệu
-                                    tbody
-                                        each d in JSON.parse(data)
-                                            tr
-                                                td #{d.fullname}
-                                                td #{d.email}
-                                                td #{d.phone}
-                                                td #{d.leaderPhone}
+                    .col-md-2
+                        //p #{user}
+                        //a(href="/logout") Đăng xuất
+        .page-content
+            .row
+                .col-md-2
+                    .sidebar.content-box
+                        ul.nav
+                            // Main menu
+                            li.home
+                                a(href="/home")
+                                    i.glyphicon.glyphicon-home
+                                    |  Thông báo
+                            li.current
+                                a(href='/viewTable')
+                                    i.glyphicon.glyphicon-tasks
+                                    |  Danh sách bảng
+                            li.form
+                                a(href='/viewTree')
+                                    i.glyphicon.glyphicon-tasks
+                                    |  Danh sách cây
+                .col-md-10
+                    .row
+                        .col-md-6
+                            .content-box-large
+                                .panel-heading
+                                    .panel-title Danh sách nhà đầu tư
+                                    .panel-body
+                                        table.table.table-striped
+                                            thead
+                                                tr
+                                                    th Họ tên
+                                                    th Địa chỉ email
+                                                    th Số điện thoại
+                                                    th Người giới thiệu
+                                            tbody
+                                                each d in JSON.parse(data)
+                                                    tr
+                                                        td #{d.fullname}
+                                                        td #{d.email}
+                                                        td #{d.phone}
+                                                        td #{d.leaderPhone}
+
         .container
             .copy.text-center
                 | Copyright 2014

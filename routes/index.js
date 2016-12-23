@@ -4,8 +4,11 @@ var Account = require('../models/account');
 var router = express.Router();
 
 
-router.get('/', function (req, res) {
+router.get('/home', function (req, res) {
   res.render('index', { user : req.user });
+});
+router.get('/', function (req, res) {
+  res.render('login', { user : req.user });
 });
 
 router.get('/register', function(req, res) {
@@ -19,7 +22,7 @@ router.post('/register', function(req, res) {
     }
 
     passport.authenticate('local')(req, res, function () {
-      res.redirect('/');
+      res.redirect('/home');
     });
   });
 });
@@ -29,12 +32,12 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  res.redirect('/');
+  res.redirect('/home');
 });
 
 router.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/home');
 });
 
 router.get('/ping', function(req, res){

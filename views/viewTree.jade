@@ -3,12 +3,18 @@
 html
     head
         meta(http-equiv='content-type', content='text/html; charset=UTF-8')
-        title The very first organization diagram
+        title VIKING
         link(rel='stylesheet', href='demo/js/jquery/ui-lightness/jquery-ui-1.10.2.custom.css')
         script(type='text/javascript', src='demo/js/jquery/jquery-1.9.1.js')
         script(type='text/javascript', src='demo/js/jquery/jquery-ui-1.10.2.custom.min.js')
         script(type='text/javascript', src='demo/js/primitives.min.js')
         link(href='demo/css/primitives.latest.css', media='screen', rel='stylesheet', type='text/css')
+        //meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
+        link(rel='stylesheet', href='/css/styles.css')
+        //script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+        script(src='/bootstrap/js/bootstrap.min.js')
         script(type='text/javascript').
             //<![CDATA[
             $(window).load(function () {
@@ -30,8 +36,8 @@ html
                 options.templates = [getContactTemplate()];
                 options.onItemRender = onTemplateRender;
                 options.defaultTemplateName = "contactTemplate";
-                //options.normalItemsInterval = 10;
-                //options.normalLevelShift = 44;
+                options.normalItemsInterval = 10;
+                options.normalLevelShift = 44;
                 jQuery("#basicdiagram").orgDiagram(options);
                 function onTemplateRender(event, data) {
                     switch (data.renderingMode) {
@@ -61,13 +67,13 @@ html
                 function getContactTemplate() {
                     var result = new primitives.orgdiagram.TemplateConfig();
                     result.name = "contactTemplate";
-                    result.itemSize = new primitives.common.Size(220, 120);
+                    result.itemSize = new primitives.common.Size(150, 100);
                     result.minimizedItemSize = new primitives.common.Size(3, 3);
                     result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);
                     var itemTemplate = jQuery(
                             '<div class="bp-item bp-corner-all bt-item-frame">'
-                            + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 2px; left: 2px; width: 216px; height: 20px; overflow: hidden;">'
-                            + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 208px; height: 18px; overflow: hidden;">'
+                            + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 2px; left: 2px; width: 145px; height: 20px; overflow: hidden;">'
+                            + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 135px; height: 18px; overflow: hidden;">'
                             + '</div>'
                             + '</div>'
                             + '<div class="bp-item bp-photo-frame" style="top: 26px; left: 2px; width: 50px; height: 60px; overflow: hidden;">'
@@ -87,4 +93,44 @@ html
                 }
             });//]]>
     body
-        #basicdiagram(style='width: 100%; height: 480px; border-style: dotted; border-width: 1px;')
+        .header
+            .container
+                .row
+                    .col-md-5
+                        // Logo
+                        .logo
+                            h1
+                                a(href='index.html') VIKING
+                    .col-md-2
+                        //p #{user}
+                        //a(href="/logout") Đăng xuất
+        .page-content
+            .row
+                .col-md-2
+                    .sidebar.content-box
+                        ul.nav
+                            // Main menu
+                            li.home
+                                a(href="/home")
+                                    i.glyphicon.glyphicon-home
+                                    |  Thông báo
+                            li.form
+                                a(href='/viewTable')
+                                    i.glyphicon.glyphicon-tasks
+                                    |  Danh sách bảng
+                            li.current
+                                a(href='/viewTree')
+                                    i.glyphicon.glyphicon-tasks
+                                    |  Danh sách cây
+                .col-md-10
+                    .row
+                        .content-box-large
+                            #basicdiagram(style='width: 100%; height: 99%; border-style: none; border-width: 2px;')
+    footer
+        .container
+            .copy.text-center
+                | Viking 2016
+                a(href='#') Website
+    //script(src='https://code.jquery.com/jquery.js')
+    //script(src='bootstrap/js/bootstrap.min.js')
+    //script(src='js/custom.js')
