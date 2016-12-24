@@ -9,7 +9,7 @@ html
         link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
         link(rel='stylesheet', href='/css/styles.css')
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
-        script(src='/bootstrap/js/bootstrap.min.js')
+        //script(src='/bootstrap/js/bootstrap.min.js')
         //style(type='text/css').
         //    .table.table-striped{
         //        width: 900px;
@@ -37,13 +37,15 @@ html
                                     i.glyphicon.glyphicon-home
                                     |  Thông báo
                             li.current
-                                a(href='/viewTable')
-                                    i.glyphicon.glyphicon-tasks
-                                    |  Danh sách bảng
-                            li.form
-                                a(href='/viewTree')
-                                    i.glyphicon.glyphicon-tasks
-                                    |  Danh sách cây
+                                a.dropdown-submenu(href='#', data-toggle='dropdown')
+                                    i.glyphicon.glyphicon-list
+                                    | Thông tin
+                                    b.caret
+                                ul.dropdown-submenu
+                                    li
+                                        a(href='/viewTable') Dạng bảng
+                                    li
+                                        a(href='/viewTree') Dạng cây
                 .col-md-9
                     .row
                         .content-box-large
@@ -64,7 +66,11 @@ html
                                                         td #{d.phone}
                                                         td #{d.leaderPhone}
 
-        .container
-            .copy.text-center
-                | Copyright 2014
-                a(href='#') Website
+        footer
+            .container
+                .copy.text-center
+                    | Viking 2016
+                    a(href='#') Website
+        script(src='https://code.jquery.com/jquery.js')
+        script(src='bootstrap/js/bootstrap.min.js')
+        script(src='js/custom.js')

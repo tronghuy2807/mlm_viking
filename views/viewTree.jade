@@ -14,7 +14,7 @@ html
         link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
         link(rel='stylesheet', href='/css/styles.css')
         //script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
-        script(src='/bootstrap/js/bootstrap.min.js')
+        //script(src='/bootstrap/js/bootstrap.min.js')
         script(type='text/javascript').
             //<![CDATA[
             $(window).load(function () {
@@ -28,6 +28,7 @@ html
                         parent: object.leaderPhone,
                         title: object.fullname,
                         description: object.email,
+                        childrenPlacementType: primitives.common.ChildrenPlacementType.Vertical,
                         image: "javascripts/img/user.jpg"
                     }))
                 })
@@ -114,14 +115,16 @@ html
                                 a(href="/home")
                                     i.glyphicon.glyphicon-home
                                     |  Thông báo
-                            li.form
-                                a(href='/viewTable')
-                                    i.glyphicon.glyphicon-tasks
-                                    |  Danh sách bảng
                             li.current
-                                a(href='/viewTree')
-                                    i.glyphicon.glyphicon-tasks
-                                    |  Danh sách cây
+                                a.dropdown-submenu(href='#', data-toggle='dropdown')
+                                    i.glyphicon.glyphicon-list
+                                    | Thông tin
+                                    b.caret
+                                ul.dropdown-submenu
+                                    li
+                                        a(href='/viewTable') Dạng bảng
+                                    li
+                                        a(href='/viewTree') Dạng cây
                 .col-md-9
                     .row
                         .content-box-large
@@ -132,5 +135,5 @@ html
                 | Viking 2016
                 a(href='#') Website
     //script(src='https://code.jquery.com/jquery.js')
-    //script(src='bootstrap/js/bootstrap.min.js')
-    //script(src='js/custom.js')
+    script(src='bootstrap/js/bootstrap.min.js')
+    script(src='js/custom.js')
