@@ -67,7 +67,7 @@ html
                 function getContactTemplate() {
                     var result = new primitives.orgdiagram.TemplateConfig();
                     result.name = "contactTemplate";
-                    result.itemSize = new primitives.common.Size(150, 100);
+                    result.itemSize = new primitives.common.Size(140, 100);
                     result.minimizedItemSize = new primitives.common.Size(3, 3);
                     result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);
                     var itemTemplate = jQuery(
@@ -106,7 +106,7 @@ html
                         //a(href="/logout") Đăng xuất
         .page-content
             .row
-                .col-md-2
+                .col-md-3
                     .sidebar.content-box
                         ul.nav
                             // Main menu
@@ -122,7 +122,7 @@ html
                                 a(href='/viewTree')
                                     i.glyphicon.glyphicon-tasks
                                     |  Danh sách cây
-                .col-md-10
+                .col-md-9
                     .row
                         .content-box-large
                             #basicdiagram(style='width: 100%; height: 99%; border-style: none; border-width: 2px;')

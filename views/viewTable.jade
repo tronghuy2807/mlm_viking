@@ -10,6 +10,10 @@ html
         link(rel='stylesheet', href='/css/styles.css')
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
         script(src='/bootstrap/js/bootstrap.min.js')
+        //style(type='text/css').
+        //    .table.table-striped{
+        //        width: 900px;
+        //    }
     body
         .header
             .container
@@ -24,7 +28,7 @@ html
                         //a(href="/logout") Đăng xuất
         .page-content
             .row
-                .col-md-2
+                .col-md-3
                     .sidebar.content-box
                         ul.nav
                             // Main menu
@@ -40,11 +44,9 @@ html
                                 a(href='/viewTree')
                                     i.glyphicon.glyphicon-tasks
                                     |  Danh sách cây
-                .col-md-10
+                .col-md-9
                     .row
-                        .col-md-6
-                            .content-box-large
-                                .panel-heading
+                        .content-box-large
                                     .panel-title Danh sách nhà đầu tư
                                     .panel-body
                                         table.table.table-striped
