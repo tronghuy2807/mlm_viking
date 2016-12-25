@@ -1,15 +1,64 @@
 doctype html
 html
   head
-    title VIKING
-      meta(name='viewport', content='width=device-width, initial-scale=1.0')
-      link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
-      link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
-      link(rel='stylesheet', href='/css/styles.css')
-      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
-      script(src='/bootstrap/js/bootstrap.min.js')
-    block content
+    title Viking
+    block script
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
+        link(rel='stylesheet', href='/css/styles.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+        script(src='https://code.jquery.com/jquery.js')
+        script(src='bootstrap/js/bootstrap.min.js')
+        script(src='js/custom.js')
 
-  script(src='https://code.jquery.com/jquery.js')
-  script(src='/public/bootstrap/js/bootstrap.min.js')
-  script(src='/public/js/custom.js')
+  body
+    .header
+      .container
+        .row
+          .col-md-5
+            // Logo
+            .logo
+              h1
+                a(href='/home') VIKING
+          .col-md-7
+            .navbar.navbar-inverse(role='banner')
+              nav.collapse.navbar-collapse.bs-navbar-collapse.navbar-right(role='navigation')
+                ul.nav.navbar-nav
+                  li.dropdown
+                    a.dropdown-toggle(href='#', data-toggle='dropdown')
+                      | Tài khoản
+                      b.caret
+                    ul.dropdown-menu.animated.fadeInUp
+                      li
+                        a(href='profile.html') Cá nhân
+                      li
+                        a(href='/logout') Đăng xuất
+            //p #{user}
+            //a(href="/logout") Đăng xuất
+      .page-content
+        .row
+            block content
+              .col-md-3
+                .sidebar.content-box
+                  ul.nav
+                    // Main menu
+                    li.current
+                      a(href="/home")
+                        i.glyphicon.glyphicon-home
+                        |  Thông báo
+                    li.dropdown
+                      a.dropdown-submenu(href='#', data-toggle='dropdown')
+                        i.glyphicon.glyphicon-list
+                        | Thông tin
+                        b.caret
+                      ul.dropdown-submenu
+                        li
+                          a(href='/viewTable') Dạng bảng
+                        li
+                          a(href='/viewTree') Dạng cây
+      footer
+          .container
+              .copy.text-center
+                  | Viking 2016
+                  a(href='#') Website

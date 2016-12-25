@@ -2,8 +2,8 @@
    Created by tronghuy2807 on 22/12/2016.
 html
     head
-        meta(http-equiv='content-type', content='text/html; charset=UTF-8')
         title VIKING
+        meta(http-equiv='content-type', content='text/html; charset=UTF-8')
         link(rel='stylesheet', href='demo/js/jquery/ui-lightness/jquery-ui-1.10.2.custom.css')
         script(type='text/javascript', src='demo/js/jquery/jquery-1.9.1.js')
         script(type='text/javascript', src='demo/js/jquery/jquery-ui-1.10.2.custom.min.js')
@@ -13,6 +13,8 @@ html
         link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
         link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
         link(rel='stylesheet', href='/css/styles.css')
+        script(src='bootstrap/js/bootstrap.min.js')
+        script(src='js/custom.js')
         //script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
         //script(src='/bootstrap/js/bootstrap.min.js')
         script(type='text/javascript').
@@ -28,7 +30,7 @@ html
                         parent: object.leaderPhone,
                         title: object.fullname,
                         description: object.email,
-                        childrenPlacementType: primitives.common.ChildrenPlacementType.Vertical,
+                        childrenPlacementType: primitives.common.ChildrenPlacementType.Matrix,
                         image: "javascripts/img/user.jpg"
                     }))
                 })
@@ -101,10 +103,20 @@ html
                         // Logo
                         .logo
                             h1
-                                a(href='index.html') VIKING
-                    .col-md-2
-                        //p #{user}
-                        //a(href="/logout") Đăng xuất
+                                a(href='/home') VIKING
+                    .col-md-7
+                        .navbar.navbar-inverse(role='banner')
+                            nav.collapse.navbar-collapse.bs-navbar-collapse.navbar-right(role='navigation')
+                                ul.nav.navbar-nav
+                                    li.dropdown
+                                        a.dropdown-toggle(href='#', data-toggle='dropdown')
+                                            | Tài khoản
+                                            b.caret
+                                        ul.dropdown-menu.animated.fadeInUp
+                                            li
+                                                a(href='profile.html') Cá nhân
+                                            li
+                                                a(href='/login') Đăng xuất
         .page-content
             .row
                 .col-md-3
@@ -135,5 +147,3 @@ html
                 | Viking 2016
                 a(href='#') Website
     //script(src='https://code.jquery.com/jquery.js')
-    script(src='bootstrap/js/bootstrap.min.js')
-    script(src='js/custom.js')

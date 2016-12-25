@@ -16,15 +16,30 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-  Account.register(new Account({ username : req.body.username, fullname: req.body.fullname, email:req.body.email,phone: req.body.phone, leaderPhone: req.body.leaderPhone }), req.body.password, function(err, account) {
-    if (err) {
-      return res.render('register', { account : account });
-    }
+  if(req.body.password == req.body.confirmPass) {
+    Account.register(new Account({
+      username: req.body.username,
+      fullname: req.body.fullname,
+      email: req.body.email,
+      phone: req.body.phone,
+      leaderPhone: req.body.leaderPhone
+    }), req.body.password, function (err, account) {
+      if (err) {
+        return res.render('register', {account: 'Tài khoản đã tồn tại!'});
+      }
 
-    passport.authenticate('local')(req, res, function () {
-      res.redirect('/home');
+      passport.authenticate('local')(req, res, function () {
+        req.session.save(function (err) {
+          if (err) {
+            return next(err);
+          }
+          res.redirect('/');
+        });
+      });
     });
-  });
+  } else {
+    res.render('register',{error:'Xác nhận mật khẩu không chính xác!'});
+  }
 });
 
 router.get('/login', function(req, res) {
@@ -37,7 +52,7 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 
 router.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/home');
+  res.redirect('/login');
 });
 
 router.get('/ping', function(req, res){

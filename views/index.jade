@@ -1,77 +1,28 @@
-doctype html
-html
-  head
-    title VIKING
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
-    link(rel='stylesheet', href='/css/styles.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
-    //script(src='/bootstrap/js/bootstrap.min.js')
-    //script(type='text/javascript', src='http://twitter.github.io/bootstrap/assets/js/bootstrap-dropdown.js')
+extends layout
+block append content
+  .col-md-9
+    .content-box-large
+      .panel-heading
+        .panel-title Giới thiệu
+        .panel-options
+      .panel-body
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
+        br
+        br
+        |                            HÃY ĐỂ CHÚNG TÔI HỖ TRỢ BẠN PHÁT TRIỂN CÔNG VIỆC KINH DOANH CỦA MÌNH!
 
-  body
-    .header
-      .container
-        .row
-          .col-md-5
-            // Logo
-            .logo
-              h1
-                a(href='index.html') VIKING
-          .col-md-2
-            //p #{user}
-            //a(href="/logout") Đăng xuất
-    .page-content
-      .row
-        .col-md-3
-          .sidebar.content-box
-            ul.nav
-              // Main menu
-              li.current
-                a(href="/home")
-                  i.glyphicon.glyphicon-home
-                  |  Thông báo
-              li.dropdown
-                a.dropdown-submenu(href='#', data-toggle='dropdown')
-                  i.glyphicon.glyphicon-list
-                  | Thông tin
-                  b.caret
-                ul.dropdown-submenu
-                  li
-                    a(href='/viewTable') Dạng bảng
-                  li
-                    a(href='/viewTree') Dạng cây
-        .col-md-9
-              .content-box-large
-                .panel-heading
-                  .panel-title Giới thiệu
-                  .panel-options
-                .panel-body
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  | Đây là giải pháp phần mềm quản lý kinh doanh giúp giải quyết một cách toàn diện tất cả vấn đề về quản trị doanh nghiệp, mang lại sự tiện lợi nhưng hiệu quả về thời gian và tầm kiểm soát chặt chẽ cho nhà quản lý.
-                  br
-                  br
-                  |                            HÃY ĐỂ CHÚNG TÔI HỖ TRỢ BẠN PHÁT TRIỂN CÔNG VIỆC KINH DOANH CỦA MÌNH!
-    footer
-      .container
-        .copy.text-center
-          | Viking 2016
-          a(href='#') Website
-    script(src='https://code.jquery.com/jquery.js')
-    script(src='bootstrap/js/bootstrap.min.js')
-    script(src='js/custom.js')
 
 
 

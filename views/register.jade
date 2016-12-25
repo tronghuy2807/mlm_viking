@@ -24,19 +24,27 @@ html
                         .box
                             .content-wrap
                                 h6.caption Đăng ký
+                                if(error)
+                                    p #{error}
+                                if(account)
+                                    p #{account}
                                 form(role='form', action="/register",method="post", style='max-width: 300px;')
                                     .form-group
-                                        input.form-control(type='text',name="fullname", placeholder='Họ tên')
+                                        input.form-control(type='text',name="fullname", placeholder='Họ tên',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
-                                        input.form-control(type='text', name="username", placeholder='Nhập tên đăng nhập')
+                                        input.form-control(type='text', name="username", placeholder='Nhập tên đăng nhập',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
-                                        input.form-control(type='password',name="password", placeholder='Mật khẩu')
-                                    //.form-group
-                                    //    input.form-control(type='password', placeholder='Xác nhận mật khẩu')
+                                        input.form-control(type='password', name="password",placeholder='Mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
-                                        input.form-control(type='text',name="email", placeholder='Địa chỉ email')
+                                        input.form-control(type='password',name = "confirmPass",placeholder='Xác nhận mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
-                                        input.form-control(type='text',name="phone", placeholder='Số điện thoại')
+                                        input.form-control(type='text',name="email", placeholder='Địa chỉ email',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .form-group
+                                        input.form-control(type='text',name="org", placeholder='Công ty/tổ chức')
+                                    .form-group
+                                        input.form-control(type='text',name="pos", placeholder='Chức vụ')
+                                    .form-group
+                                        input.form-control(type='text',name="phone", placeholder='Số điện thoại',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         input.form-control(type='text',name="leaderPhone", placeholder='Người giới thiệu')
                                     button.btn.btn-info(type='submit') Đăng ký
