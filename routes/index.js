@@ -105,4 +105,12 @@ router.get('/viewTree', function (req, res) {
         res.render('login');
     }
 });
+
+router.get('/viewProfile',function (req,res) {
+   if(req.user){
+       res.render('viewProfile')
+   }else {
+       res.render('login');
+   }
+});
 module.exports = router;

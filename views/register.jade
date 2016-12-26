@@ -40,15 +40,20 @@ html
                                     .form-group
                                         input.form-control(type='text',name="email", placeholder='Địa chỉ email',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
-                                        input.form-control(type='text',name="org", placeholder='Công ty/tổ chức')
+                                        input.form-control(type='text',name="org", placeholder='Công ty/tổ chức',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
-                                        input.form-control(type='text',name="pos", placeholder='Chức vụ')
+                                        input.form-control(type='text',name="cmt", placeholder='Chứng minh thư',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .form-group
+                                        input.form-control(type='text',name="tk", placeholder='Số tài khoản',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .form-group
+                                        input.form-control(type='text',name="userId", placeholder='Mã giao dịch',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         input.form-control(type='text',name="phone", placeholder='Số điện thoại',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
-                                        input.form-control(type='text',name="leaderPhone", placeholder='Người giới thiệu')
+                                        input.form-control(type='text',name="leaderID", placeholder='Mã số người giới thiệu')
                                     .form-group
-                                        input(type='file', name='sampleFile')
+                                        label.btn.btn-primary.btn-block.btn-outlined(for='imageUpload') Lựa chọn ảnh đại diện
+                                        input#imageUpload(type='file',name='sampleFile',style='display: none')
                                         //input(type='file', name='sampleFile',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",onclick="this.setCustomValidity('')")
                                     button.btn.btn-info(type='submit') Đăng ký
                                 //&nbsp;

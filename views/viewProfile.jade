@@ -1,0 +1,46 @@
+//
+   Created by tronghuy2807 on 26/12/2016.
+extends layout
+block append content
+    .col-md-9
+        .row
+            .content-box-large
+                            h3.caption Thông tin cá nhân
+                            if(error)
+                                p #{error}
+                            if(account)
+                                p #{account}
+                            form(role='form', action="/register",method="post", style='max-width: 800px;',enctype='multipart/form-data')
+                                .form-group
+                                    input.form-control(type='text',name="fullname", placeholder='Họ tên',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='text', name="username", placeholder='Nhập tên đăng nhập',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='password', name="password",placeholder='Mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='password',name = "confirmPass",placeholder='Xác nhận mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='text',name="email", placeholder='Địa chỉ email',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='text',name="org", placeholder='Công ty/tổ chức',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='text',name="cmt", placeholder='Chứng minh thư',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='text',name="tk", placeholder='Số tài khoản',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='text',name="userId", placeholder='Mã giao dịch',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='text',name="phone", placeholder='Số điện thoại',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                .form-group
+                                    input.form-control(type='text',name="leaderID", placeholder='Mã số người giới thiệu')
+                                .form-group
+                                    label.btn.btn-block.btn-warning(for='imageUpload') Lựa chọn ảnh đại diện
+                                    input#imageUpload(type='file',name='sampleFile',style='display: none')
+                                    //input(type='file', name='sampleFile',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",onclick="this.setCustomValidity('')")
+                                button.btn.btn-success(type='submit') Cập nhật
+                                a(href='/home')
+                                    button.btn.btn-info(type="button") Hủy thay đổi
+                    //.already
+                    //
+                    //    p Bạn đã có tài khoản
+                    //    a(href='/login') Đăng nhập
