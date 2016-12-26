@@ -16,7 +16,7 @@ html
                         // Logo
                         .logo
                             h1
-                                a(href='index.html') VIKING
+                                a(href='/home') VIKING
         .page-content.container
             .row
                 .col-md-4.col-md-offset-4
@@ -28,7 +28,7 @@ html
                                     p #{error}
                                 if(account)
                                     p #{account}
-                                form(role='form', action="/register",method="post", style='max-width: 300px;')
+                                form(role='form', action="/register",method="post", style='max-width: 500px;',enctype='multipart/form-data')
                                     .form-group
                                         input.form-control(type='text',name="fullname", placeholder='Họ tên',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
@@ -47,6 +47,9 @@ html
                                         input.form-control(type='text',name="phone", placeholder='Số điện thoại',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         input.form-control(type='text',name="leaderPhone", placeholder='Người giới thiệu')
+                                    .form-group
+                                        input(type='file', name='sampleFile')
+                                        //input(type='file', name='sampleFile',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",onclick="this.setCustomValidity('')")
                                     button.btn.btn-info(type='submit') Đăng ký
                                 //&nbsp;
                                 //a(href='/')

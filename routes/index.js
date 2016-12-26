@@ -20,6 +20,7 @@ router.get('/register', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
+    console.log('AAA',req.files);
     if (req.body.password == req.body.confirmPass) {
         Account.register(new Account({
             username: req.body.username,
@@ -31,13 +32,26 @@ router.post('/register', function (req, res) {
             if (err) {
                 return res.render('register', {account: 'Tài khoản đã tồn tại!'});
             }
-
             passport.authenticate('local')(req, res, function () {
                 req.session.save(function (err) {
                     if (err) {
                         return next(err);
                     }
-                    res.redirect('/');
+                    if(req.files) {
+                        var sampleFile;
+                        sampleFile = req.files.sampleFile;
+                        imgName = sampleFile.name;
+                        sampleFile.mv('public/uploads/' + imgName, function (err) {
+                            if (err) {
+                                res.redirect('/');
+                            }
+                            else {
+                                res.redirect('/');
+                            }
+                        });
+                    }else {
+                        res.redirect('/');
+                    }
                 });
             });
         });

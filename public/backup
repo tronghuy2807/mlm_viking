@@ -59,3 +59,19 @@
 //                    return result;
 //                }
 //            });//]]>
+
+
+
+
+ // console.log('BBB',req.files)
+                    // var sampleFile;
+                    // sampleFile = req.files.sampleFile;
+                    // imgName = sampleFile.name;
+                    // sampleFile.mv('/home/tronghuy2807/Working/source/vik/passport-local-express4/public/uploads/'+imgName, function(err) {
+                    //     if (err) {
+                    //         res.status(500).send(err);
+                    //     }
+                    //     else {
+                    //         res.redirect('/');
+                    //     }
+                    // });
