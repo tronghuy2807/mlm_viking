@@ -10,7 +10,7 @@ block append content
                                 p #{error}
                             if(account)
                                 p #{account}
-                            form(role='form', action="/register",method="post", style='max-width: 800px;',enctype='multipart/form-data')
+                            form(role='form', action="/register",method="post", style='max-width: 500px;',enctype='multipart/form-data')
                                 .form-group
                                     input.form-control(type='text',name="fullname", placeholder='Họ tên',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                 .form-group

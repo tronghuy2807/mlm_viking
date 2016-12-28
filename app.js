@@ -10,6 +10,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var fileUpload = require('express-fileupload');
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -31,7 +32,7 @@ app.use(require('express-session')({
   resave: false,
   saveUninitialized: false
 }));
-app.use(fileUpload());
+// app.use(fileUpload());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
