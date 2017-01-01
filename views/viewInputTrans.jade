@@ -1,0 +1,51 @@
+//
+   Created by tronghuy2807 on 31/12/2016.
+extends layout
+block append content
+    .col-md-9
+        .row
+            .content-box-large
+                .panel-title NHẬP THÔNG TIN GIAO DỊCH
+                .panel-body
+                    .row
+                        form(enctype='multipart/form-data', action='uploadTrans', method='post')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='IB Name')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Curr')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Time')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='ID')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Net Deposits')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Balance')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Equity')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Volume (Lot)')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Volume (USD)')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Commision')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Markup')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Ticket')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='OpenTime')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Side')
+                            .col-md-4.form-group
+                                input.form-control(type='text', placeholder='Amount')
+                            .col-xs-3.form-group
+                                input(type='file', name='file',style="margin-bottom:5px")
+                                //label.btn.btn-info.btn-block.btn-outlined(for='imageUpload') Chọn file excel
+                                //input#imageUpload(type='file',name='sampleFile',style='display: none')
+                                button.btn.btn-success(type='submit')
+                                    | Cập nhật
+
+
+
+

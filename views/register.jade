@@ -19,50 +19,61 @@ html
                                 a(href='/home') VIKING
         .page-content.container
             .row
-                .col-md-4.col-md-offset-4
-                    .login-wrapper
+                .col-md-4.col-md-offset-2
+                    .login-wrapper(style='width:800px;')
                         .box
                             .content-wrap
-                                h6.caption Đăng ký
+                                h1.caption ĐĂNG KÝ
                                 if(error)
                                     p #{error}
                                 if(account)
                                     p #{account}
-                                form(role='form', action="/register",method="post", style='max-width: 500px;',enctype='multipart/form-data')
-                                    .form-group
+                                form(role='form', action="/register",method="post", style='max-width: 700px;',enctype='multipart/form-data')
+                                    .col-md-12.form-group
                                         input.form-control(type='text',name="fullname", placeholder='Họ tên',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
-                                        input.form-control(type='text', name="username", placeholder='Nhập tên đăng nhập',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
+                                    .col-md-12.form-group
+                                        input.form-control(type='text', name="username", placeholder='Tên đăng nhập',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .col-md-6.form-group
                                         input.form-control(type='password', name="password",placeholder='Mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
-                                        input.form-control(type='password',name = "confirmPass",placeholder='Xác nhận mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
-                                        input.form-control(type='text',name="email", placeholder='Địa chỉ email',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
+                                    .col-md-6.form-group
+                                        input.form-control(type='password',name = "confirmPass",placeholder='Xác nhận mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin ')",oninput="this.setCustomValidity('')")
+                                    .col-md-12.form-group
+                                        input.form-control(type='email',name="email", placeholder='Địa chỉ email',data-error='Định dạng email không chính xác',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin hoặc email không chính xác')",oninput="this.setCustomValidity('')")
+                                    .col-md-6.form-group
+                                        input.form-control(type='text',name="birthdate", placeholder='Ngày sinh',onfocus="(this.type='date')",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .col-md-6.form-group
+                                        input.form-control(type='text',list='sex', name='sex', placeholder='Giới tính',required)
+                                        datalist#sex
+                                            option(data-value='1') Nam
+                                            option(data-value='2') Nữ
+                                            option(data-value='0') Không xác định
+                                    .col-md-12.form-group
+                                        input.form-control(type='text',name="cmt", placeholder='Chứng minh thư / Hộ chiếu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    //.col-md-6.form-group
+                                    //    input.form-control(type='text',name="cmtdate", placeholder='Ngày cấp',onfocus="(this.type='date')",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .col-md-12.form-group
                                         input.form-control(type='text',name="org", placeholder='Công ty/tổ chức',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
-                                        input.form-control(type='text',name="cmt", placeholder='Chứng minh thư',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
-                                        input.form-control(type='text',name="tk", placeholder='Số tài khoản',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
+                                    .col-md-6.form-group
+                                        input.form-control(type='text',name="bankacc", placeholder='Tài khoản ngân hàng',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .col-md-6.form-group
+                                        input.form-control(type='text',name="bankbranch", placeholder='Tên ngân hàng - Chi nhánh',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .col-md-6.form-group
                                         input.form-control(type='text',name="userId", placeholder='Mã giao dịch',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
+                                    .col-md-6.form-group
+                                        input.form-control(type='text',name="leaderID", placeholder='Mã giao dịch người giới thiệu')
+                                    .col-md-8.form-group
+                                        input.form-control(type='text',name="addr", placeholder='Địa chỉ',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .col-md-4.form-group
                                         input.form-control(type='text',name="phone", placeholder='Số điện thoại',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .form-group
-                                        input.form-control(type='text',name="leaderID", placeholder='Mã số người giới thiệu')
-                                    .form-group
-                                        label.btn.btn-primary.btn-block.btn-outlined(for='imageUpload') Lựa chọn ảnh đại diện
-                                        input#imageUpload(type='file',name='sampleFile',style='display: none')
+                                    .col-md-4.form-group
+                                        //label.btn.btn-primary.btn-block.btn-outlined(for='imageUpload') Lựa chọn ảnh đại diện
+                                        input(type='file', name='file')
                                         //input(type='file', name='sampleFile',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",onclick="this.setCustomValidity('')")
-                                    button.btn.btn-info(type='submit') Đăng ký
-                                //&nbsp;
-                                //a(href='/')
-                                //    button.btn.btn-primary(type="button") Hủy đăng ký
+                                    //button.btn.btn-success(type='submit') Đăng ký
+                                    input(type='submit', value='Upload', name='submit')
                         .already
-
                             p Bạn đã có tài khoản
-                            a(href='/login') Đăng nhập
+                            a(href='/login',style='color:blue') Đăng nhập
         // jQuery (necessary for Bootstrap's JavaScript plugins)
         script(src='https://code.jquery.com/jquery.js')
         // Include all compiled plugins (below), or include individual files as needed

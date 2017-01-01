@@ -1,13 +1,15 @@
 var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
+var Transaction = require('../models/transaction');
 var router = express.Router();
 var multer = require('multer');
 var xlstojson = require("xls-to-json-lc");
 var xlsxtojson = require("xlsx-to-json-lc");
-var storage = multer.diskStorage({ //multers disk storage settings
+
+var storageExcel = multer.diskStorage({ //multers disk storageExcel settings
     destination: function (req, file, cb) {
-        cb(null, '/home/tronghuy2807/Working/source/vik/passport-local-express4/public/uploads')
+        cb(null, 'public/excel')
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
@@ -15,8 +17,8 @@ var storage = multer.diskStorage({ //multers disk storage settings
     }
 });
 
-var upload = multer({ //multer settings
-    storage: storage,
+var uploadExcel = multer({ //multer settings
+    storage: storageExcel,
     fileFilter: function (req, file, callback) { //file filter
         if (['xls', 'xlsx'].indexOf(file.originalname.split('.')[file.originalname.split('.').length - 1]) === -1) {
             return callback(new Error('Wrong extension type'));
@@ -25,7 +27,15 @@ var upload = multer({ //multer settings
     }
 }).single('file');
 
-
+var storageImg = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, 'public/uploadImgs');
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname);
+    }
+});
+var uploadImg = multer({storage: storageImg}).array('file');
 router.get('/home', function (req, res) {
     if (req.user) {
         res.render('index', {user: req.user});
@@ -42,43 +52,41 @@ router.get('/register', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
-    if (req.body.password == req.body.confirmPass) {
-        Account.register(new Account({
-            username: req.body.username,
-            fullname: req.body.fullname,
-            email: req.body.email,
-            phone: req.body.phone,
-            leaderPhone: req.body.leaderPhone
-        }), req.body.password, function (err, account) {
-            if (err) {
-                return res.render('register', {account: 'Tài khoản đã tồn tại!'});
-            }
-            passport.authenticate('local')(req, res, function () {
-                req.session.save(function (err) {
+    uploadImg(req, res, function (err) {
+        console.log('REGISTER', req.body)
+        if (err) {
+            console.log('XXXXX',err)
+            res.redirect('/');
+        }else {
+
+            if (req.body.password == req.body.confirmPass) {
+                Account.register(new Account({
+                    username: req.body.username,
+                    fullname: req.body.fullname,
+                    email: req.body.email,
+                    phone: req.body.phone,
+                    leaderPhone: req.body.leaderPhone
+                }), req.body.password, function (err, account) {
                     if (err) {
-                        return next(err);
+                        return res.render('register', {account: 'Tài khoản đã tồn tại!'});
                     }
-                    if (req.files) {
-                        var sampleFile;
-                        sampleFile = req.files.sampleFile;
-                        imgName = sampleFile.name;
-                        sampleFile.mv('public/uploads/' + imgName, function (err) {
+                    passport.authenticate('local')(req, res, function () {
+                        req.session.save(function (err) {
                             if (err) {
-                                res.redirect('/');
+                                return next(err);
                             }
-                            else {
-                                res.redirect('/');
-                            }
+                            console.log('YYYYYYY')
+
                         });
-                    } else {
-                        res.redirect('/');
-                    }
+                    });
                 });
-            });
-        });
-    } else {
-        res.render('register', {error: 'Xác nhận mật khẩu không chính xác!'});
-    }
+            } else {
+                res.render('register', {error: 'Xác nhận mật khẩu không chính xác!'});
+            }
+            console.log('ZZZZZZ')
+            res.redirect('/');
+        }
+    });
 });
 
 router.get('/login', function (req, res) {
@@ -114,6 +122,13 @@ router.get('/viewTable', function (req, res) {
         res.render('login');
     }
 });
+router.get('/viewInputTrans', function (req, res) {
+    if (req.user) {
+        res.render('viewInputTrans')
+    } else {
+        res.render('login');
+    }
+});
 router.get('/viewTree', function (req, res) {
     if (req.user) {
         Account.find({}, {_id: 0, salt: 0, hash: 0}, function (err, data) {
@@ -141,10 +156,20 @@ router.get('/uploadExcel', function (req, res) {
         res.render('login');
     }
 });
-router.post('/upload', function (req, res) {
-    console.log('AAAAAAAAA', req);
+router.post('/upTest', function (req, res) {
+
+    uploadImg(req, res, function (err) {
+        console.log('TEST', req)
+        if (err) {
+            res.redirect('/');
+        }
+        res.redirect('/');
+
+    });
+});
+router.post('/uploadTrans', function (req, res) {
     var exceltojson;
-    upload(req, res, function (err) {
+    uploadExcel(req, res, function (err) {
         if (err) {
             res.json({error_code: 1, err_desc: err});
             return;
@@ -171,6 +196,16 @@ router.post('/upload', function (req, res) {
             }, function (err, result) {
                 if (err) {
                     return res.json({error_code: 1, err_desc: err, data: null});
+                }
+                xxx = JSON.parse(JSON.stringify(result));
+                console.log('XXXX', xxx);
+                Transaction.collection.insert(result, onInsert);
+                function onInsert(err, docs) {
+                    if (err) {
+                        // TODO: handle error
+                    } else {
+                        console.info('%d potatoes were successfully stored.', docs.length);
+                    }
                 }
 
                 res.json({error_code: 0, err_desc: null, data: result});

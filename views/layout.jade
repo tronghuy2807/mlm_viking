@@ -43,20 +43,30 @@ html
                 .sidebar.content-box
                   ul.nav
                     // Main menu
-                    li.current
+                    li
                       a(href="/home")
                         i.glyphicon.glyphicon-home
                         |  Thông báo
                     li.dropdown
-                      a.dropdown-submenu(href='#', data-toggle='dropdown')
-                        i.glyphicon.glyphicon-list
-                        | Thông tin
-                        b.caret
-                      ul.dropdown-submenu
-                        li
-                          a(href='/viewTable') Dạng bảng
-                        li
-                          a(href='/viewTree') Dạng cây
+                        a.dropdown-submenu(href='#', data-toggle='dropdown')
+                            i.glyphicon.glyphicon-list
+                            | Thông tin
+                            b.caret
+                        ul.dropdown-submenu
+                            li
+                                a(href='/viewTable') Dạng bảng
+                            li
+                                a(href='/viewTree') Dạng cây
+                    li
+                      a(href="/viewInputTrans")
+                        i.glyphicon.glyphicon-tasks
+                        |  Tạo giao dịch
+                    li
+                      a(href="/home")
+                        i.glyphicon.glyphicon-tasks
+                        |  Thống kê
+
+
       footer
           .container
               .copy.text-center
