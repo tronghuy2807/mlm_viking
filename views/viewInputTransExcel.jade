@@ -1,0 +1,17 @@
+//
+   Created by tronghuy2807 on 02/01/2017.
+extends layout
+block append content
+    .col-md-9
+        .row
+            .content-box-large(style='margin-bottom:669px')
+                .panel-body
+                    .row
+                        form(method='post', action='uploadTrans', enctype='multipart/form-data')
+                            .col-md-6.form-group
+                                label.btn.btn-info.btn-block.btn-outlined(for='imageUpload') Lựa chọn file excel
+                                    input#imageUpload(type='file', name='file',style="display:none;")
+                            button.btn.btn-success(type='submit',style='margin-right:5px')
+                                | Cập nhật
+                            a(href='/viewStatistics')
+                                button.btn.btn-primary(type="button") Xem thống kê

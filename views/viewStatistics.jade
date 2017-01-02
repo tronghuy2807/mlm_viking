@@ -1,0 +1,57 @@
+extends layout
+block append script
+    script(src='https://code.jquery.com/jquery-1.12.4.js')
+    script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js')
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $('#userInformation').DataTable({
+                "pagingType": "full_numbers"
+            });
+        });
+block append content
+    .col-md-9
+        .row
+            .content-box-large
+                h2 DANH SÁCH NHÀ ĐẦU TƯ
+                .panel-body
+                    //.col-md-12(style='margin-left:505px')
+                    //    .row
+                    //        button.btn.btn-success(type='button') Thêm mới
+
+                    table#userInformation.table.table-striped.table-bordered(cellspacing='0', width='100%')
+                        thead
+                            tr
+                                th IB Name
+                                th Currency
+                                th Time
+                                th ID
+                                th Deposit
+                                th Balance
+                                th Equity
+                                th Volume (lot)
+                                th Volume (usd)
+                                th Commision
+                                th Markup
+                                th Ticket
+                                th Open time
+                                th Side
+                                th Amount
+                        tbody
+                            each d in JSON.parse(data)
+                                tr
+                                    td #{d.ibname}
+                                    td #{d.curr}
+                                    td #{d.time}
+                                    td #{d.id}
+                                    td #{d.deposit}
+                                    td #{d.balance}
+                                    td #{d.equity}
+                                    td #{d.lotvolume}
+                                    td #{d.usdvolume}
+                                    td #{d.commision}
+                                    td #{d.markup}
+                                    td #{d.ticket}
+                                    td #{d.opentime}
+                                    td #{d.side}
+                                    td #{d.amount}

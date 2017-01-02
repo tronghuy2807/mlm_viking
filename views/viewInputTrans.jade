@@ -4,48 +4,50 @@ extends layout
 block append content
     .col-md-9
         .row
-            .content-box-large
-                .panel-title NHẬP THÔNG TIN GIAO DỊCH
+            .content-box-large(style='margin-bottom:376px')
+                h2 NHẬP THÔNG TIN GIAO DỊCH
                 .panel-body
                     .row
-                        form(enctype='multipart/form-data', action='uploadTrans', method='post')
+                        //form(enctype='multipart/form-data', action='uploadTrans', method='post')
+                        form(action='uploadTransHand', method='post')
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='IB Name')
+                                input.form-control(type='text', placeholder='IB Name',name="ibname")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Curr')
+                                input.form-control(type='text', placeholder='Currency',name="curr")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Time')
+                                input.form-control(type='text', placeholder='Time',name="time")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='ID')
+                                input.form-control(type='text', placeholder='ID',name="id")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Net Deposits')
+                                input.form-control(type='text', placeholder='Net Deposits',name="deposit")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Balance')
+                                input.form-control(type='text', placeholder='Balance',name="balance")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Equity')
+                                input.form-control(type='text', placeholder='Equity',name="equity")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Volume (Lot)')
+                                input.form-control(type='text', placeholder='Volume (Lot)',name="lotvolume")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Volume (USD)')
+                                input.form-control(type='text', placeholder='Volume (USD)',name="usdvolume")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Commision')
+                                input.form-control(type='text', placeholder='Commision',name="commision")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Markup')
+                                input.form-control(type='text', placeholder='Markup',name="markup")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Ticket')
+                                input.form-control(type='text', placeholder='Ticket',name="ticket")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='OpenTime')
+                                input.form-control(type='text', placeholder='OpenTime',name="opentime")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Side')
+                                input.form-control(type='text', placeholder='Side',name="side")
                             .col-md-4.form-group
-                                input.form-control(type='text', placeholder='Amount')
-                            .col-xs-3.form-group
-                                input(type='file', name='file',style="margin-bottom:5px")
+                                input.form-control(type='text', placeholder='Amount',name="amount")
+                            //.col-xs-12.form-group
+                            //    input(type='file', name='file',style="margin-bottom:5px")
                                 //label.btn.btn-info.btn-block.btn-outlined(for='imageUpload') Chọn file excel
                                 //input#imageUpload(type='file',name='sampleFile',style='display: none')
-                                button.btn.btn-success(type='submit')
-                                    | Cập nhật
-
+                            button.btn.btn-success(type='submit',style='margin-right:5px')
+                                | Cập nhật
+                            a(href='/viewStatistics')
+                                button.btn.btn-primary(type="button") Xem thống kê
 
 
 

@@ -212,6 +212,7 @@ router.post('/upTest', function (req, res) {
     });
 });
 router.post('/uploadTrans', function (req, res) {
+    console.log('XXXX', req);
     var exceltojson;
     uploadExcel(req, res, function (err) {
         if (err) {
@@ -242,7 +243,6 @@ router.post('/uploadTrans', function (req, res) {
                     return res.json({error_code: 1, err_desc: err, data: null});
                 }
                 xxx = JSON.parse(JSON.stringify(result));
-                console.log('XXXX', xxx);
                 Transaction.collection.insert(result, onInsert);
                 function onInsert(err, docs) {
                     if (err) {
@@ -252,7 +252,7 @@ router.post('/uploadTrans', function (req, res) {
                     }
                 }
 
-                res.json({error_code: 0, err_desc: null, data: result});
+                res.render('viewInputTransExcel');
             });
         } catch (e) {
             res.json({error_code: 1, err_desc: "Corupted excel file"});
@@ -260,5 +260,38 @@ router.post('/uploadTrans', function (req, res) {
     })
 
 });
+router.post('/uploadTransHand', function (req, res) {
+    var result = req.body;
+    console.log('UPLOAD: ',req)
+    Transaction.collection.insert(result, onInsert);
+    function onInsert(err, docs) {
+        if (err) {
+            // TODO: handle error
+        } else {
+            console.info('%d potatoes were successfully stored.', docs.length);
+        }
+    }
+    res.render('viewInputTrans');
+});
 
+router.get('/viewInputTransExcel', function (req, res) {
+    if (req.user) {
+        res.render('viewInputTransExcel',{user:JSON.stringify(req.user)})
+    } else {
+        res.render('login');
+    }
+});
+
+router.get('/viewStatistics', function (req, res) {
+    if (req.user) {
+        Transaction.find({}, {_id: 0}, function (err, data) {
+            if (err) throw err;
+
+            // object of all the users
+            res.render('viewStatistics', {data: JSON.stringify(data)});
+        });
+    } else {
+        res.render('login');
+    }
+});
 module.exports = router;

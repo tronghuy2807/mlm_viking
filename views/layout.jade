@@ -57,12 +57,18 @@ html
                                 a(href='/viewTable') Dạng bảng
                             li
                                 a(href='/viewTree') Dạng cây
+                    li.dropdown
+                          a.dropdown-submenu(href='#', data-toggle='dropdown')
+                              i.glyphicon.glyphicon-list
+                              | Tạo giao dịch
+                              b.caret
+                          ul.dropdown-submenu
+                              li
+                                  a(href='/viewInputTrans') Nhập tay
+                              li
+                                  a(href='/viewInputTransExcel') Nhập từ excel
                     li
-                      a(href="/viewInputTrans")
-                        i.glyphicon.glyphicon-tasks
-                        |  Tạo giao dịch
-                    li
-                      a(href="/home")
+                      a(href="/viewStatistics")
                         i.glyphicon.glyphicon-tasks
                         |  Thống kê
 
