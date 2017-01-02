@@ -52,25 +52,25 @@ html
                                     //.col-md-6.form-group
                                     //    input.form-control(type='text',name="cmtdate", placeholder='Ngày cấp',onfocus="(this.type='date')",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .col-md-12.form-group
-                                        input.form-control(type='text',name="org", placeholder='Công ty/tổ chức',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                        input.form-control(type='text',name="org", placeholder='Công ty / Tổ chức',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .col-md-6.form-group
                                         input.form-control(type='text',name="bankacc", placeholder='Tài khoản ngân hàng',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .col-md-6.form-group
                                         input.form-control(type='text',name="bankbranch", placeholder='Tên ngân hàng - Chi nhánh',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .col-md-6.form-group
-                                        input.form-control(type='text',name="userId", placeholder='Mã giao dịch',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                        input.form-control(type='text',name="userID", placeholder='Mã giao dịch',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .col-md-6.form-group
                                         input.form-control(type='text',name="leaderID", placeholder='Mã giao dịch người giới thiệu')
                                     .col-md-8.form-group
                                         input.form-control(type='text',name="addr", placeholder='Địa chỉ',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .col-md-4.form-group
                                         input.form-control(type='text',name="phone", placeholder='Số điện thoại',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                    .col-md-4.form-group
-                                        //label.btn.btn-primary.btn-block.btn-outlined(for='imageUpload') Lựa chọn ảnh đại diện
-                                        input(type='file', name='file')
+                                    .col-md-12.form-group
+                                        label.btn.btn-info.btn-block.btn-outlined(for='imageUpload') Lựa chọn ảnh đại diện
+                                        input#imageUpload(type='file', name='file',style="display:none;")
                                         //input(type='file', name='sampleFile',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",onclick="this.setCustomValidity('')")
-                                    //button.btn.btn-success(type='submit') Đăng ký
-                                    input(type='submit', value='Upload', name='submit')
+                                        //button.btn.btn-success(type='submit') Đăng ký
+                                    input.btn.btn-success(type='submit', value='Đăng ký', name='submit')
                         .already
                             p Bạn đã có tài khoản
                             a(href='/login',style='color:blue') Đăng nhập

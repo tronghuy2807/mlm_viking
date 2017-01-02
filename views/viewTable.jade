@@ -1,24 +1,54 @@
 //
    Created by tronghuy2807 on 21/12/2016.
 extends layout
+block append script
+    script(src='https://code.jquery.com/jquery-1.12.4.js')
+    script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js')
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $('#userInformation').DataTable({
+                "pagingType": "full_numbers"
+            });
+        });
 block append content
     .col-md-9
         .row
             .content-box-large
-                        .panel-title Danh sách nhà đầu tư
+                        h2 DANH SÁCH NHÀ ĐẦU TƯ
                         .panel-body
-                            table.table.table-striped
+                            //.col-md-12(style='margin-left:505px')
+                            //    .row
+                            //        button.btn.btn-success(type='button') Thêm mới
+
+                            table#userInformation.table.table-striped.table-bordered(cellspacing='0', width='100%')
                                 thead
                                     tr
                                         th Họ tên
                                         th Địa chỉ email
-                                        th Số điện thoại
-                                        th Người giới thiệu
+                                        th Ngày sinh
+                                        th Giới tính
+                                        th CMT
+                                        th Công ty
+                                        th Tài khoản ngân hàng
+                                        th Tên ngân hàng
+                                        th Mã giao dịch
+                                        th Mã giới thiệu
+                                        th Địa chỉ
+                                        th Điện thoại
                                 tbody
                                     each d in JSON.parse(data)
                                         tr
                                             td #{d.fullname}
                                             td #{d.email}
+                                            td #{d.birthdate}
+                                            td #{d.sex}
+                                            td #{d.cmt}
+                                            td #{d.org}
+                                            td #{d.bankacc}
+                                            td #{d.bankbranch}
+                                            td #{d.userID}
+                                            td #{d.leaderID}
+                                            td #{d.addr}
                                             td #{d.phone}
-                                            td #{d.leaderPhone}
 

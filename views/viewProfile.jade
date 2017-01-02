@@ -5,41 +5,69 @@ block append content
     .col-md-9
         .row
             .content-box-large
-                            h3.caption Thông tin cá nhân
+                            h3.caption(style='margin-left:350px') Thông tin cá nhân
                             if(error)
                                 p #{error}
-                            if(account)
-                                p #{account}
-                            form(role='form', action="/register",method="post", style='max-width: 500px;',enctype='multipart/form-data')
-                                .form-group
-                                    input.form-control(type='text',name="fullname", placeholder='Họ tên',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='text', name="username", placeholder='Nhập tên đăng nhập',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='password', name="password",placeholder='Mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='password',name = "confirmPass",placeholder='Xác nhận mật khẩu',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='text',name="email", placeholder='Địa chỉ email',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='text',name="org", placeholder='Công ty/tổ chức',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='text',name="cmt", placeholder='Chứng minh thư',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='text',name="tk", placeholder='Số tài khoản',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='text',name="userId", placeholder='Mã giao dịch',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='text',name="phone", placeholder='Số điện thoại',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
-                                .form-group
-                                    input.form-control(type='text',name="leaderID", placeholder='Mã số người giới thiệu')
-                                .form-group
-                                    label.btn.btn-block.btn-warning(for='imageUpload') Lựa chọn ảnh đại diện
-                                    input#imageUpload(type='file',name='sampleFile',style='display: none')
-                                    //input(type='file', name='sampleFile',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",onclick="this.setCustomValidity('')")
-                                button.btn.btn-success(type='submit') Cập nhật
-                                a(href='/home')
-                                    button.btn.btn-info(type="button") Hủy thay đổi
+                            if(user)
+                                form(role='form', action="/updateProfile",method="post", style='max-width: 700px;margin-left:100px')
+                                    .col-md-12.form-group
+                                        label(for='fullname') Họ và tên:
+                                        input.form-control(type='text',name="fullname",id='fullname',value='#{JSON.parse(user).fullname}')
+                                    .col-md-12.form-group
+                                        label(for='username') Tên đăng nhập:
+                                        input.form-control(type='text', name="username",value='#{JSON.parse(user).username}',readonly)
+                                    //.col-md-6.form-group
+                                    //    label Mật khẩu:
+                                    //    input.form-control(type='password', name="password",placeholder='Mật khẩu',value='#{JSON.parse(user).password}',readonly)
+                                    //.col-md-6.form-group
+                                    //    label Xác nhận mật khẩu:
+                                    //    input.form-control(type='password',name = "confirmPass",placeholder='Xác nhận mật khẩu',value='#{JSON.parse(user).confirmPass}',readonly)
+                                    .col-md-12.form-group
+                                        label Địa chỉ email:
+                                        input.form-control(type='email',name="email", placeholder='Địa chỉ email',data-error='Định dạng email không chính xác',value='#{JSON.parse(user).email}')
+                                    .col-md-6.form-group
+                                        label Ngày sinh:
+                                        input.form-control(type='text',name="birthdate", placeholder='Ngày sinh',onfocus="(this.type='date')",value='#{JSON.parse(user).birthdate}')
+                                    .col-md-6.form-group
+                                        label Giới tính:
+                                        input.form-control(type='text',list='sex', name='sex', placeholder='Giới tính',value='#{JSON.parse(user).sex}')
+                                        datalist#sex
+                                            option(data-value='1') Nam
+                                            option(data-value='2') Nữ
+                                            option(data-value='0') Không xác định
+                                    .col-md-12.form-group
+                                        label Chứng minh thư / Hộ chiếu:
+                                        input.form-control(type='text',name="cmt", placeholder='Chứng minh thư / Hộ chiếu',value='#{JSON.parse(user).cmt}')
+                                    //.col-md-6.form-group
+                                    //    input.form-control(type='text',name="cmtdate", placeholder='Ngày cấp',onfocus="(this.type='date')",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
+                                    .col-md-12.form-group
+                                        label Công ty / Tổ chức:
+                                        input.form-control(type='text',name="org", placeholder='Công ty / Tổ chức',value='#{JSON.parse(user).org}')
+                                    .col-md-6.form-group
+                                        label Tài khoản ngân hàng:
+                                        input.form-control(type='text',name="bankacc", placeholder='Tài khoản ngân hàng',value='#{JSON.parse(user).bankacc}')
+                                    .col-md-6.form-group
+                                        label Tên ngân hàng - Chi nhánh:
+                                        input.form-control(type='text',name="bankbranch", placeholder='Tên ngân hàng - Chi nhánh',value='#{JSON.parse(user).bankbranch}')
+                                    .col-md-6.form-group
+                                        label Mã giao dịch:
+                                        input.form-control(type='text',name="userID", placeholder='Mã giao dịch',value='#{JSON.parse(user).userID}')
+                                    .col-md-6.form-group
+                                        label Mã giao dịch người giới thiệu:
+                                        input.form-control(type='text',name="leaderID", placeholder='Mã giao dịch người giới thiệu',value='#{JSON.parse(user).leaderID}')
+                                    .col-md-8.form-group
+                                        label Địa chỉ:
+                                        input.form-control(type='text',name="addr", placeholder='Địa chỉ',value='#{JSON.parse(user).addr}')
+                                    .col-md-4.form-group
+                                        label Số điện thoại:
+                                        input.form-control(type='text',name="phone", placeholder='Số điện thoại',value='#{JSON.parse(user).phone}')
+                                    //.col-md-12.form-group
+                                    //    label.btn.btn-info.btn-block.btn-outlined(for='imageUpload') Lựa chọn ảnh đại diện
+                                    //    input#imageUpload(type='file', name='file',style="display:none;",value='#{JSON.parse(user).img}')
+                                    button.btn.btn-success(type='submit',style='margin-right:5px;margin-left:15px') Cập nhật
+                                    a(href='/home')
+                                        button.btn.btn-info(type="button") Hủy thay đổi
+
                     //.already
                     //
                     //    p Bạn đã có tài khoản

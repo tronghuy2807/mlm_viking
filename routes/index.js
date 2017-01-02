@@ -43,6 +43,7 @@ router.get('/home', function (req, res) {
         res.render('login');
     }
 });
+
 router.get('/', function (req, res) {
     res.render('login', {user: req.user});
 });
@@ -55,17 +56,30 @@ router.post('/register', function (req, res) {
     uploadImg(req, res, function (err) {
         console.log('REGISTER', req.body)
         if (err) {
-            console.log('XXXXX',err)
+            console.log('Error: ', err)
             res.redirect('/');
-        }else {
+        } else {
 
             if (req.body.password == req.body.confirmPass) {
+                var img ='';
+                if(req.files[0]){
+                    img = req.files[0].originalname;
+                }
                 Account.register(new Account({
                     username: req.body.username,
                     fullname: req.body.fullname,
                     email: req.body.email,
                     phone: req.body.phone,
-                    leaderPhone: req.body.leaderPhone
+                    birthdate: req.body.birthdate,
+                    sex: req.body.sex,
+                    cmt: req.body.cmt,
+                    org: req.body.org,
+                    bankacc: req.body.bankacc,
+                    bankbranch: req.body.bankbranch,
+                    userID: req.body.userID,
+                    leaderID: req.body.leaderID,
+                    addr: req.body.addr,
+                    img: img
                 }), req.body.password, function (err, account) {
                     if (err) {
                         return res.render('register', {account: 'Tài khoản đã tồn tại!'});
@@ -75,16 +89,46 @@ router.post('/register', function (req, res) {
                             if (err) {
                                 return next(err);
                             }
-                            console.log('YYYYYYY')
-
                         });
                     });
                 });
             } else {
                 res.render('register', {error: 'Xác nhận mật khẩu không chính xác!'});
             }
-            console.log('ZZZZZZ')
             res.redirect('/');
+        }
+    });
+});
+
+router.post('/updateProfile',function (req,res) {
+    console.log('Update Profile: ',req.body);
+    Account.findOne({username:req.body.username}, function (err, data) {
+        // Handle any possible database errors
+        if (err) {
+            res.status(500).send(err);
+        } else {
+
+            // Update each attribute with any possible attribute that may have been submitted in the body of the request
+            // If that attribute isn't in the request body, default back to whatever it was before.
+            data.fullname = req.body.fullname|| data.fullname
+            data.email = req.body.email || data.email;
+            data.birthdate = req.body.birthdate || data.birthdate;
+            data.sex = req.body.sex || data.sex;
+            data.cmt = req.body.cmt || data.cmt;
+            data.org = req.body.org || data.org;
+            data.bankacc = req.body.bankacc || data.bankacc;
+            data.bankbranch = req.body.bankbranch || data.bankbranch;
+            data.userID = req.body.userID || data.userID;
+            data.leaderID = req.body.leaderID || data.leaderID;
+            data.addr = req.body.addr || data.addr;
+            data.phone = req.body.phone || data.phone;
+            // Save the updated document back to the database
+            data.save(function (err, result) {
+                if (err) {
+                    res.status(500).send(err)
+                }
+            });
+            res.redirect('/viewProfile');
         }
     });
 });
@@ -144,7 +188,7 @@ router.get('/viewTree', function (req, res) {
 
 router.get('/viewProfile', function (req, res) {
     if (req.user) {
-        res.render('viewProfile')
+        res.render('viewProfile',{user:JSON.stringify(req.user)})
     } else {
         res.render('login');
     }

@@ -11,7 +11,16 @@ var Account = new Schema({
     fullname: String,
     email: String,
     phone: String,
-    leaderPhone: String
+    birthdate: Date,
+    sex: String,
+    cmt: String,
+    org: String,
+    bankacc: String,
+    bankbranch: String,
+    userID: String,
+    leaderID: String,
+    addr: String,
+    img:String
 });
 
 Account.plugin(passportLocalMongoose);
