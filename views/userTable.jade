@@ -1,0 +1,293 @@
+extends layout
+block append script
+    script(type='text/javascript').
+        function pagination() {
+            var req_num_row = 10;
+            var $tr = jQuery('tbody tr');
+            var total_num_row = $tr.length;
+            var num_pages = 0;
+            if (total_num_row % req_num_row == 0) {
+                num_pages = total_num_row / req_num_row;
+            }
+            if (total_num_row % req_num_row >= 1) {
+                num_pages = total_num_row / req_num_row;
+                num_pages++;
+                num_pages = Math.floor(num_pages++);
+            }
+            for (var i = 1; i <= num_pages; i++) {
+                jQuery('#pagination').append(" <a href='#' class='btn'>"+i+"</a> ");
+            }
+            $tr.each(function (i) {
+                jQuery(this).hide();
+                if (i + 1 <= req_num_row) {
+                    $tr.eq(i).show();
+                }
+            });
+            jQuery('#pagination a').click(function (e) {
+                e.preventDefault();
+                $tr.hide();
+                var page = jQuery(this).text();
+                var temp = page - 1;
+                var start = temp * req_num_row;
+                //alert(start);
+                for (var i = 0; i < req_num_row; i++) {
+                    $tr.eq(start + i).show();
+                }
+            });
+        }
+        jQuery('document').ready(function () {
+            pagination();
+        });
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    style(type='text/css').
+        .pagination > li {
+            display: inline;
+            padding: 0px !important;
+            margin: 0px !important;
+            border: none !important;
+        }
+
+        .modal-backdrop {
+            z-index: -1 !important;
+        }
+
+        /*
+        Fix to show in full screen demo
+        */
+        iframe {
+            height: 700px !important;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 3px 6px !important;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            color: #fff !important;
+            background: #428bca !important;
+            border-color: #357ebd !important;
+            box-shadow: none !important;
+        }
+
+        .btn-danger {
+            color: #fff !important;
+            background: #d9534f !important;
+            border-color: #d9534f !important;
+            box-shadow: none !important;
+        }
+
+        #pagination a {
+            display: inline-block;
+            margin-right: 5px;
+            /*float: left;*/
+            transition: background-color .3s;
+
+        }
+
+block append content
+    .col-md-9
+        .row
+            .content-box-large
+
+                    h3(style='margin-left:500px') DANH SÁCH NHÀ ĐẦU TƯ
+                    input#myInput(type='text', onkeyup='myFunction()', placeholder='Tìm kiếm theo tên..',style='margin-right:5px;border-radius:5px')
+                    input.btn.btn-info(data-title='Add', data-toggle='modal', data-target='#add',value='Thêm mới')
+                    #add.modal.fade(tabindex='-1', role='dialog', aria-labelledby='edit', aria-hidden='true')
+                        .modal-dialog
+                            .modal-content
+                                .modal-header
+                                    button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                                        span.glyphicon.glyphicon-remove(aria-hidden='true')
+                                    h4#Heading.modal-title.custom_align Thêm người dùng
+                                .modal-body
+                                    form(role='form', action="/userTableEdit",method="post", style='max-width: 700px;')
+                                        .form-group
+                                            label Họ và tên:
+                                            input.form-control(type='text',name="fullname")
+                                        .form-group
+                                            label Tên đăng nhập:
+                                            input.form-control(type='text',name="username")
+                                        .form-group
+                                            input.form-control(type='text',name="email")
+                                        .form-group
+                                            input.form-control(type='text',name="birthdate")
+                                        .form-group
+                                            input.form-control(type='text', name="sex")
+                                        .form-group
+                                            input.form-control(type='text', name="cmt")
+                                        .form-group
+                                            input.form-control(type='text', name="org")
+                                        .form-group
+                                            input.form-control(type='text', name="bankacc")
+                                        .form-group
+                                            input.form-control(type='text', name="bankbranch")
+                                        .form-group
+                                            input.form-control(type='text', name="userID")
+                                        .form-group
+                                            input.form-control(type='text', name="leaderID")
+                                        .form-group
+                                            input.form-control(type='text', name="addr")
+                                        .form-group
+                                            input.form-control(type='text', name="phone")
+                                        input.btn.btn-success(type='submit', value='Cập nhật')
+                                .modal-footer
+                                    //button.btn.btn-warning.btn-lg(type='button', style='width: 100%;')
+                                    //    span.glyphicon.glyphicon-ok-sign
+                                    //    |  Update
+                    .table-responsive
+                        table#myTable.paginated.table.table-bordred.table-striped
+                            thead
+                                th Họ tên
+                                th Địa chỉ email
+                                th Ngày sinh
+                                th Giới tính
+                                th CMT
+                                th Công ty
+                                th Tài khoản ngân hàng
+                                th Tên ngân hàng
+                                th Mã giao dịch
+                                th Mã giới thiệu
+                                th Địa chỉ
+                                th Điện thoại
+                            tbody
+                                each d,i in JSON.parse(data)
+                                    tr
+                                        td #{d.fullname}
+                                        td #{d.email}
+                                        td #{d.birthdate}
+                                        td #{d.sex}
+                                        td #{d.cmt}
+                                        td #{d.org}
+                                        td #{d.bankacc}
+                                        td #{d.bankbranch}
+                                        td #{d.userID}
+                                        td #{d.leaderID}
+                                        td #{d.addr}
+                                        td #{d.phone}
+                                        td
+                                            p(data-placement='top', data-toggle='tooltip', title='Sửa')
+                                                button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal', data-target='#edit'+i)
+                                                    span.glyphicon.glyphicon-pencil
+                                                div(id="edit"+i).modal.fade(tabindex='-1', role='dialog', aria-labelledby='edit', aria-hidden='true')
+                                                    .modal-dialog
+                                                        .modal-content
+                                                            .modal-header
+                                                                button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                                                                    span.glyphicon.glyphicon-remove(aria-hidden='true')
+                                                                h4#Heading.modal-title.custom_align Sửa thông tin người dùng
+                                                            .modal-body
+                                                                form(role='form', action="/userTableEdit",method="post", style='max-width: 700px;')
+                                                                    .form-group
+                                                                        label Họ và tên:
+                                                                        input.form-control(type='text',name="fullname", value='#{d.fullname}')
+                                                                    .form-group
+                                                                        label Tên đăng nhập:
+                                                                        input.form-control(type='text',name="username", value='#{d.username}')
+                                                                    .form-group
+                                                                        input.form-control(type='text',name="email", value='#{d.email}')
+                                                                    .form-group
+                                                                        input.form-control(type='text',name="birthdate", value='#{d.birthdate}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="sex",value='#{d.sex}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="cmt",value='#{d.cmt}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="org",value='#{d.org}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="bankacc",value='#{d.bankacc}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="bankbranch",value='#{d.bankbranch}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="userID",value='#{d.userID}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="leaderID",value='#{d.leaderID}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="addr",value='#{d.addr}')
+                                                                    .form-group
+                                                                        input.form-control(type='text', name="phone",value='#{d.phone}')
+                                                                    input.btn.btn-success(type='submit', value='Cập nhật')
+                                                            .modal-footer
+                                                                //button.btn.btn-warning.btn-lg(type='button', style='width: 100%;')
+                                                                //    span.glyphicon.glyphicon-ok-sign
+                                                                //    |  Update
+                                        td
+                                            p(data-placement='top', data-toggle='tooltip', title='Xóa')
+                                                button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete'+i)
+                                                    span.glyphicon.glyphicon-trash
+
+                                                div(id="delete"+i).modal.fade(tabindex='-1', role='dialog', aria-labelledby='edit', aria-hidden='true')
+                                                    .modal-dialog
+                                                        .modal-content
+                                                            .modal-header
+                                                                button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                                                                    span.glyphicon.glyphicon-remove(aria-hidden='true')
+                                                                h4#Heading.modal-title.custom_align Xóa thông tin này
+                                                            .modal-body
+                                                                .alert.alert-danger
+                                                                    span.glyphicon.glyphicon-warning-sign
+                                                                    |  Bạn có chắc chắn xóa thông tin người dùng này ?
+                                                            .modal-footer
+                                                                form(role='form', action="/userTableDelete",method="post")
+                                                                    button.btn.btn-success(type='submit',name='username',value='#{d.username}')
+                                                                        span.glyphicon.glyphicon-ok-sign
+                                                                        |  Đồng ý
+                                                                    button.btn.btn-default(type='button', data-dismiss='modal')
+                                                                        span.glyphicon.glyphicon-remove
+                                                                        |  Thoát
+                        #pagination
+                                //.clearfix
+                                //ul.pagination.pull-right
+                                //    li.disabled
+                                //        a(href='#')
+                                //            span.glyphicon.glyphicon-chevron-left
+                                //    li.active
+                                //        a(href='#') 1
+                                //    li
+                                //        a(href='#') 2
+                                //    li
+                                //        a(href='#') 3
+                                //    li
+                                //        a(href='#') 4
+                                //    li
+                                //        a(href='#') 5
+                                //    li
+                                //        a(href='#')
+                                //            span.glyphicon.glyphicon-chevron-right
+
+

@@ -7,6 +7,7 @@ var multer = require('multer');
 var xlstojson = require("xls-to-json-lc");
 var xlsxtojson = require("xlsx-to-json-lc");
 
+/*Storage file*/
 var storageExcel = multer.diskStorage({ //multers disk storageExcel settings
     destination: function (req, file, cb) {
         cb(null, 'public/excel')
@@ -44,9 +45,18 @@ router.get('/home', function (req, res) {
     }
 });
 
+/*Login, logout and register*/
 router.get('/', function (req, res) {
     res.render('login', {user: req.user});
 });
+
+router.get('/login', function (req, res) {
+    res.render('login', {user: req.user});
+});
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/home',
+    failureRedirect: '/login',
+}));
 
 router.get('/register', function (req, res) {
     res.render('register', {});
@@ -100,6 +110,19 @@ router.post('/register', function (req, res) {
     });
 });
 
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/login');
+});
+
+/*User profile*/
+router.get('/viewProfile', function (req, res) {
+    if (req.user) {
+        res.render('viewProfile',{user:JSON.stringify(req.user)})
+    } else {
+        res.render('login');
+    }
+});
 router.post('/updateProfile',function (req,res) {
     console.log('Update Profile: ',req.body);
     Account.findOne({username:req.body.username}, function (err, data) {
@@ -133,39 +156,88 @@ router.post('/updateProfile',function (req,res) {
     });
 });
 
-router.get('/login', function (req, res) {
-    res.render('login', {user: req.user});
-});
-
-// router.post('/login', passport.authenticate('local'), function(req, res) {
-//   res.redirect('/home');
-// });
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/login',
-}));
-
-router.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/login');
-});
-
-router.get('/ping', function (req, res) {
-    res.status(200).send("pong!");
-});
-
-router.get('/viewTable', function (req, res) {
+/*User list*/
+router.get('/userTable', function (req, res) {
     if (req.user) {
         Account.find({}, {_id: 0, salt: 0, hash: 0}, function (err, data) {
             if (err) throw err;
 
             // object of all the users
-            res.render('viewTable', {data: JSON.stringify(data)});
+            res.render('userTable', {data: JSON.stringify(data)});
         });
     } else {
         res.render('login');
     }
 });
+router.get('/userTree', function (req, res) {
+    if (req.user) {
+        Account.find({}, {_id: 0, salt: 0, hash: 0}, function (err, data) {
+            if (err) throw err;
+
+            // object of all the users
+            res.render('userTree', {data: JSON.stringify(data)});
+        });
+    } else {
+        res.render('login');
+    }
+});
+router.post('/userTableEdit',function (req,res) {
+
+    Account.findOne({username:req.body.username}, function (err, data) {
+        // Handle any possible database errors
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            data.fullname = req.body.fullname|| data.fullname
+            data.email = req.body.email || data.email;
+            data.birthdate = req.body.birthdate || data.birthdate;
+            data.sex = req.body.sex || data.sex;
+            data.cmt = req.body.cmt || data.cmt;
+            data.org = req.body.org || data.org;
+            data.bankacc = req.body.bankacc || data.bankacc;
+            data.bankbranch = req.body.bankbranch || data.bankbranch;
+            data.userID = req.body.userID || data.userID;
+            data.leaderID = req.body.leaderID || data.leaderID;
+            data.addr = req.body.addr || data.addr;
+            data.phone = req.body.phone || data.phone;
+            // Save the updated document back to the database
+            data.save(function (err, result) {
+                if (err) {
+                    res.status(500).send(err)
+                }
+            });
+            res.redirect('/userTable');
+        }
+    });
+});
+
+router.post('/userTableDelete',function (req,res) {
+
+    Account.remove({ username: req.body.username}, function(err) {
+        if (!err) {
+            res.redirect('/userTable');
+        }
+        else {
+            console.log('TABLEUPDATEEROR',req.body);
+            res.redirect('/userTable');
+        }
+    });
+});
+
+router.post('/userTableDelete',function (req,res) {
+
+    Account.remove({ username: req.body.username}, function(err) {
+        if (!err) {
+            res.redirect('/userTable');
+        }
+        else {
+            console.log('TABLEUPDATEEROR',req.body);
+            res.redirect('/userTable');
+        }
+    });
+});
+/*Transaction*/
+
 router.get('/viewInputTrans', function (req, res) {
     if (req.user) {
         res.render('viewInputTrans')
@@ -173,26 +245,7 @@ router.get('/viewInputTrans', function (req, res) {
         res.render('login');
     }
 });
-router.get('/viewTree', function (req, res) {
-    if (req.user) {
-        Account.find({}, {_id: 0, salt: 0, hash: 0}, function (err, data) {
-            if (err) throw err;
 
-            // object of all the users
-            res.render('viewTree', {data: JSON.stringify(data)});
-        });
-    } else {
-        res.render('login');
-    }
-});
-
-router.get('/viewProfile', function (req, res) {
-    if (req.user) {
-        res.render('viewProfile',{user:JSON.stringify(req.user)})
-    } else {
-        res.render('login');
-    }
-});
 router.get('/uploadExcel', function (req, res) {
     if (req.user) {
         res.render('uploadExcel');
@@ -245,7 +298,7 @@ router.post('/uploadTrans', function (req, res) {
                 Transaction.collection.insert(result, onInsert);
                 function onInsert(err, docs) {
                     if (err) {
-                        // TODO: handle error
+                        //
                     } else {
                         console.info('%d potatoes were successfully stored.', docs.length);
                     }
@@ -258,19 +311,6 @@ router.post('/uploadTrans', function (req, res) {
         }
     })
 
-});
-router.post('/tableUpdate',function (req,res) {
-    console.log('TABLEUPDATE',req.body);
-    if (req.user) {
-        Account.find({}, {_id: 0, salt: 0, hash: 0}, function (err, data) {
-            if (err) throw err;
-
-            // object of all the users
-            res.render('viewTable', {data: JSON.stringify(data)});
-        });
-    } else {
-        res.render('login');
-    }
 });
 router.post('/uploadTransHand', function (req, res) {
     var result = req.body;
@@ -292,7 +332,6 @@ router.get('/viewInputTransExcel', function (req, res) {
         res.render('login');
     }
 });
-
 router.get('/viewStatistics', function (req, res) {
     if (req.user) {
         Transaction.find({}, {_id: 0}, function (err, data) {
@@ -305,4 +344,5 @@ router.get('/viewStatistics', function (req, res) {
         res.render('login');
     }
 });
+
 module.exports = router;

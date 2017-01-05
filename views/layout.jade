@@ -31,7 +31,7 @@ html
                       b.caret
                     ul.dropdown-menu.animated.fadeInUp
                       li
-                        a(href='viewProfile') Cá nhân
+                        a(href='/viewProfile') Cá nhân
                       li
                         a(href='/logout') Đăng xuất
             //p #{user}
@@ -42,31 +42,18 @@ html
               .col-md-3
                 .sidebar.content-box
                   ul.nav
-                    // Main menu
-                    li.dropdown
-                        a.dropdown-submenu(href='#', data-toggle='dropdown')
-                            i.glyphicon.glyphicon-list
-                            | Danh sách nhà đầu tư
-                            b.caret
-                        ul.dropdown-submenu
-                            li
-                                a(href='/viewTable') Dạng bảng
-                            li
-                                a(href='/viewTree') Dạng cây
-                    li.dropdown
-                          a.dropdown-submenu(href='#', data-toggle='dropdown')
-                              i.glyphicon.glyphicon-list
-                              | Tạo giao dịch
-                              b.caret
-                          ul.dropdown-submenu
-                              li
-                                  a(href='/viewInputTrans') Nhập tay
-                              li
-                                  a(href='/viewInputTransExcel') Nhập từ excel
-                    li
-                      a(href="/viewStatistics")
-                        i.glyphicon.glyphicon-tasks
-                        |  Thống kê
+                      li
+                          a(href="/userTable")
+                              i.glyphicon.glyphicon-tasks
+                              |  DANH SÁCH NHÀ ĐẦU TƯ
+                      li
+                          a(href="/viewStatistics")
+                              i.glyphicon.glyphicon-tasks
+                              |  QUẢN LÝ GIAO DỊCH
+                      li
+                          a(href="/viewStatistics")
+                            i.glyphicon.glyphicon-tasks
+                            |  THỐNG KÊ
 
 
       footer
