@@ -1,60 +1,3 @@
-//
-   Created by tronghuy2807 on 21/12/2016.
-//extends layout
-//block append script
-//    script(src='https://code.jquery.com/jquery-1.12.4.js')
-//    script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
-//    script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js')
-//    script(type='text/javascript').
-//        $(document).ready(function () {
-//            $('#userInformation').DataTable({
-//                "paging": true,
-//                "ordering": true,
-//                "info": true,
-//                "bAutoWidth": true
-//            });
-//        });
-//block append content
-//    .col-md-9
-//        .row
-//            .content-box-large
-//                        h2 DANH SÁCH NHÀ ĐẦU TƯ
-//                        .panel-body
-//                            //.col-md-12(style='margin-left:505px')
-//                            //    .row
-//                            //        button.btn.btn-success(type='button') Thêm mới
-//
-//                            table#userInformation.table.table-striped.table-bordered(cellspacing='0', width='100%')
-//                                thead
-//                                    tr
-//                                        th Họ tên
-//                                        th Địa chỉ email
-//                                        th Ngày sinh
-//                                        th Giới tính
-//                                        th CMT
-//                                        th Công ty
-//                                        th Tài khoản ngân hàng
-//                                        th Tên ngân hàng
-//                                        th Mã giao dịch
-//                                        th Mã giới thiệu
-//                                        th Địa chỉ
-//                                        th Điện thoại
-//                                tbody
-//                                    each d in JSON.parse(data)
-//                                        tr
-//                                            td #{d.fullname}
-//                                            td #{d.email}
-//                                            td #{d.birthdate}
-//                                            td #{d.sex}
-//                                            td #{d.cmt}
-//                                            td #{d.org}
-//                                            td #{d.bankacc}
-//                                            td #{d.bankbranch}
-//                                            td #{d.userID}
-//                                            td #{d.leaderID}
-//                                            td #{d.addr}
-//                                            td #{d.phone}
-
 extends layout
 block append script
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
@@ -97,6 +40,25 @@ block append script
         jQuery('document').ready(function () {
             pagination();
         });
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
     style(type='text/css').
         .pagination > li {
             display: inline;
@@ -165,9 +127,9 @@ block append content
                     .row
                         .col-md-12
                             h4 DANH SÁCH NHÀ ĐẦU TƯ
-
+                            input#myInput(type='text', onkeyup='myFunction()', placeholder='Tìm kiếm theo tên..')
                             .table-responsive
-                                table.paginated.table.table-bordred.table-striped
+                                table#myTable.paginated.table.table-bordred.table-striped
                                     thead
                                         th Họ tên
                                         th Địa chỉ email
