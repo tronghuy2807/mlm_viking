@@ -212,7 +212,6 @@ router.post('/upTest', function (req, res) {
     });
 });
 router.post('/uploadTrans', function (req, res) {
-    console.log('XXXX', req);
     var exceltojson;
     uploadExcel(req, res, function (err) {
         if (err) {
@@ -260,9 +259,21 @@ router.post('/uploadTrans', function (req, res) {
     })
 
 });
+router.post('/tableUpdate',function (req,res) {
+    console.log('TABLEUPDATE',req.body);
+    if (req.user) {
+        Account.find({}, {_id: 0, salt: 0, hash: 0}, function (err, data) {
+            if (err) throw err;
+
+            // object of all the users
+            res.render('viewTable', {data: JSON.stringify(data)});
+        });
+    } else {
+        res.render('login');
+    }
+});
 router.post('/uploadTransHand', function (req, res) {
     var result = req.body;
-    console.log('UPLOAD: ',req)
     Transaction.collection.insert(result, onInsert);
     function onInsert(err, docs) {
         if (err) {
