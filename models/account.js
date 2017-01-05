@@ -11,7 +11,7 @@ var Account = new Schema({
     fullname: String,
     email: String,
     phone: String,
-    birthdate: Date,
+    birthdate: String,
     sex: String,
     cmt: String,
     org: String,

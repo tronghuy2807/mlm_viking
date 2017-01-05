@@ -224,17 +224,38 @@ router.post('/userTableDelete',function (req,res) {
     });
 });
 
-router.post('/userTableDelete',function (req,res) {
+router.post('/userTableAdd',function (req,res) {
+        if (req.body.password == req.body.confirmPass) {
+            Account.register(new Account({
+                username: req.body.username,
+                fullname: req.body.fullname,
+                email: req.body.email,
+                phone: req.body.phone,
+                birthdate: req.body.birthdate,
+                sex: req.body.sex,
+                cmt: req.body.cmt,
+                org: req.body.org,
+                bankacc: req.body.bankacc,
+                bankbranch: req.body.bankbranch,
+                userID: req.body.userID,
+                leaderID: req.body.leaderID,
+                addr: req.body.addr
+            }), req.body.password, function (err, account) {
+                console.log('ADDTABLE', req.body)
+                if (err) {
+                    // return res.render('register', {account: 'Tài khoản đã tồn tại!'});
+                }
+                passport.authenticate('local')(req, res, function () {
 
-    Account.remove({ username: req.body.username}, function(err) {
-        if (!err) {
-            res.redirect('/userTable');
+                    req.session.save(function (err) {
+                        if (err) {
+                            return next(err);
+                        }
+                        res.redirect('/userTable');
+                    });
+                });
+            });
         }
-        else {
-            console.log('TABLEUPDATEEROR',req.body);
-            res.redirect('/userTable');
-        }
-    });
 });
 /*Transaction*/
 

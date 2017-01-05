@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 var Transaction = new Schema({
     ibname: String,
     curr: String,
-    time: Date,
+    time: String,
     id: String,
     deposit: String,
     balance: String,
@@ -18,9 +18,9 @@ var Transaction = new Schema({
     commision: String,
     markup: String,
     ticket: String,
-    opentime: Date,
+    opentime: String,
     side: String,
-    amount: String,
+    amount: String
 
 });
 //

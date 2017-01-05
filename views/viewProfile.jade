@@ -9,7 +9,7 @@ block append content
                             if(error)
                                 p #{error}
                             if(user)
-                                form(role='form', action="/updateProfile",method="post", style='max-width: 700px;margin-left:300px')
+                                form(role='form', action="/updateProfile",method="post", style='max-width: 700px;margin-left:300px',onSubmit="alert('Bạn đã cập nhật thành công');")
                                     .col-md-12.form-group
                                         label(for='fullname') Họ và tên:
                                         input.form-control(type='text',name="fullname",id='fullname',value='#{JSON.parse(user).fullname}')

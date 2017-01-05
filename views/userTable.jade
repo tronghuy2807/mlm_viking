@@ -127,7 +127,9 @@ block append content
 
                     h3(style='margin-left:500px') DANH SÁCH NHÀ ĐẦU TƯ
                     input#myInput(type='text', onkeyup='myFunction()', placeholder='Tìm kiếm theo tên..',style='margin-right:5px;border-radius:5px')
-                    input.btn.btn-info(data-title='Add', data-toggle='modal', data-target='#add',value='Thêm mới')
+                    input.btn.btn-info(data-title='Add', data-toggle='modal', data-target='#add',value='Thêm mới',style='margin-right:5px')
+                    a(href='/userTree')
+                        input.btn.btn-warning(type='button',value='Xem dạng cây')
                     #add.modal.fade(tabindex='-1', role='dialog', aria-labelledby='edit', aria-hidden='true')
                         .modal-dialog
                             .modal-content
@@ -136,7 +138,7 @@ block append content
                                         span.glyphicon.glyphicon-remove(aria-hidden='true')
                                     h4#Heading.modal-title.custom_align Thêm người dùng
                                 .modal-body
-                                    form(role='form', action="/userTableEdit",method="post", style='max-width: 700px;')
+                                    form(role='form', action="/userTableAdd",method="post", style='max-width: 700px;')
                                         .form-group
                                             label Họ và tên:
                                             input.form-control(type='text',name="fullname")
@@ -144,28 +146,48 @@ block append content
                                             label Tên đăng nhập:
                                             input.form-control(type='text',name="username")
                                         .form-group
+                                            label Mật khẩu:
+                                            input.form-control(type='password',name="password")
+                                        .form-group
+                                            label Xác nhận mật khẩu:
+                                            input.form-control(type='password',name="confirmPass")
+                                        .form-group
+                                            label Email:
                                             input.form-control(type='text',name="email")
                                         .form-group
+                                            label Ngày sinh:
                                             input.form-control(type='text',name="birthdate")
                                         .form-group
+                                            label Giới tính:
                                             input.form-control(type='text', name="sex")
                                         .form-group
+                                            label Chứng minh thư:
                                             input.form-control(type='text', name="cmt")
                                         .form-group
+                                            label Công ty / Tổ chức:
                                             input.form-control(type='text', name="org")
                                         .form-group
+                                            label Tài khoản ngân hàng:
                                             input.form-control(type='text', name="bankacc")
                                         .form-group
+                                            label Tên ngân hàng - Chi nhánh:
                                             input.form-control(type='text', name="bankbranch")
                                         .form-group
+                                            label Mã giao dịch:
                                             input.form-control(type='text', name="userID")
                                         .form-group
+                                            label Mã giới thiệu:
                                             input.form-control(type='text', name="leaderID")
                                         .form-group
+                                            label Địa chỉ:
                                             input.form-control(type='text', name="addr")
                                         .form-group
+                                            label Số điện thoại:
                                             input.form-control(type='text', name="phone")
-                                        input.btn.btn-success(type='submit', value='Cập nhật')
+                                        input.btn.btn-success(type='submit', value='Thêm mới',style='margin-right:5px')
+                                        button.btn.btn-default(type='button', data-dismiss='modal')
+                                            span.glyphicon.glyphicon-remove
+                                            |  Thoát
                                 .modal-footer
                                     //button.btn.btn-warning.btn-lg(type='button', style='width: 100%;')
                                     //    span.glyphicon.glyphicon-ok-sign
@@ -220,29 +242,42 @@ block append content
                                                                         label Tên đăng nhập:
                                                                         input.form-control(type='text',name="username", value='#{d.username}')
                                                                     .form-group
+                                                                        label Email:
                                                                         input.form-control(type='text',name="email", value='#{d.email}')
                                                                     .form-group
+                                                                        label Ngày sinh:
                                                                         input.form-control(type='text',name="birthdate", value='#{d.birthdate}')
                                                                     .form-group
+                                                                        label Giới tính:
                                                                         input.form-control(type='text', name="sex",value='#{d.sex}')
                                                                     .form-group
+                                                                        label Chứng minh thư:
                                                                         input.form-control(type='text', name="cmt",value='#{d.cmt}')
                                                                     .form-group
+                                                                        label Công ty / Tổ chức:
                                                                         input.form-control(type='text', name="org",value='#{d.org}')
                                                                     .form-group
+                                                                        label Tài khoản ngân hàng:
                                                                         input.form-control(type='text', name="bankacc",value='#{d.bankacc}')
                                                                     .form-group
+                                                                        label Tên ngân hàng - Chi nhánh:
                                                                         input.form-control(type='text', name="bankbranch",value='#{d.bankbranch}')
                                                                     .form-group
+                                                                        label Mã giao dịch:
                                                                         input.form-control(type='text', name="userID",value='#{d.userID}')
                                                                     .form-group
+                                                                        label Mã giới thiệu:
                                                                         input.form-control(type='text', name="leaderID",value='#{d.leaderID}')
                                                                     .form-group
+                                                                        label Địa chỉ:
                                                                         input.form-control(type='text', name="addr",value='#{d.addr}')
                                                                     .form-group
+                                                                        label Số điện thoại:
                                                                         input.form-control(type='text', name="phone",value='#{d.phone}')
-                                                                    input.btn.btn-success(type='submit', value='Cập nhật')
-                                                            .modal-footer
+                                                                    input.btn.btn-success(type='submit', value='Cập nhật',style='margin-right:5px')
+                                                                    button.btn.btn-default(type='button', data-dismiss='modal')
+                                                                        span.glyphicon.glyphicon-remove
+                                                                        |  Thoát
                                                                 //button.btn.btn-warning.btn-lg(type='button', style='width: 100%;')
                                                                 //    span.glyphicon.glyphicon-ok-sign
                                                                 //    |  Update
@@ -271,23 +306,6 @@ block append content
                                                                         span.glyphicon.glyphicon-remove
                                                                         |  Thoát
                         #pagination
-                                //.clearfix
-                                //ul.pagination.pull-right
-                                //    li.disabled
-                                //        a(href='#')
-                                //            span.glyphicon.glyphicon-chevron-left
-                                //    li.active
-                                //        a(href='#') 1
-                                //    li
-                                //        a(href='#') 2
-                                //    li
-                                //        a(href='#') 3
-                                //    li
-                                //        a(href='#') 4
-                                //    li
-                                //        a(href='#') 5
-                                //    li
-                                //        a(href='#')
-                                //            span.glyphicon.glyphicon-chevron-right
+
 
 

@@ -119,38 +119,22 @@ html
                                                 a(href='/login') Đăng xuất
         .page-content
             .row
-                .col-md-3
-                    .sidebar.content-box
-                        ul.nav
-                            // Main menu
-                            li.home
-                                a(href="/home")
-                                    i.glyphicon.glyphicon-home
-                                    |  Thông báo
-                            li.current
-                                a.dropdown-submenu(href='#', data-toggle='dropdown')
-                                    i.glyphicon.glyphicon-list
-                                    | Thông tin
-                                    b.caret
-                                ul.dropdown-submenu
-                                    li
-                                        a(href='/userTable') Dạng bảng
-                                    li
-                                        a(href='/userTree') Dạng cây
-                            li.dropdown
-                                a.dropdown-submenu(href='#', data-toggle='dropdown')
-                                    i.glyphicon.glyphicon-list
-                                    | Tạo giao dịch
-                                    b.caret
-                                ul.dropdown-submenu
-                                    li
-                                        a(href='/viewInputTrans') Nhập tay
-                                    li
-                                        a(href='/viewInputTransExcel') Nhập từ excel
-                            li
-                                a(href="/home")
-                                    i.glyphicon.glyphicon-tasks
-                                    |  Thống kê
+                block content
+                    .col-md-3
+                        .sidebar.content-box
+                            ul.nav
+                                li
+                                    a(href="/userTable")
+                                        i.glyphicon.glyphicon-tasks
+                                        |  DANH SÁCH NHÀ ĐẦU TƯ
+                                li
+                                    a(href="/viewStatistics")
+                                        i.glyphicon.glyphicon-tasks
+                                        |  QUẢN LÝ GIAO DỊCH
+                                li
+                                    a(href="/viewStatistics")
+                                        i.glyphicon.glyphicon-tasks
+                                        |  THỐNG KÊ
                 .col-md-9
                     .row
                         .content-box-large
