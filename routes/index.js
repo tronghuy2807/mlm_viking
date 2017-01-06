@@ -7,6 +7,10 @@ var multer = require('multer');
 var xlstojson = require("xls-to-json-lc");
 var xlsxtojson = require("xlsx-to-json-lc");
 
+var nodeExcel = require('excel-export');
+var stringify=require('node-stringify');
+var temp=[];
+
 /*Storage file*/
 var storageExcel = multer.diskStorage({ //multers disk storageExcel settings
     destination: function (req, file, cb) {
@@ -259,33 +263,7 @@ router.post('/userTableAdd',function (req,res) {
 });
 /*Transaction*/
 
-router.get('/viewInputTrans', function (req, res) {
-    if (req.user) {
-        res.render('viewInputTrans')
-    } else {
-        res.render('login');
-    }
-});
-
-router.get('/uploadExcel', function (req, res) {
-    if (req.user) {
-        res.render('uploadExcel');
-    } else {
-        res.render('login');
-    }
-});
-router.post('/upTest', function (req, res) {
-
-    uploadImg(req, res, function (err) {
-        console.log('TEST', req)
-        if (err) {
-            res.redirect('/');
-        }
-        res.redirect('/');
-
-    });
-});
-router.post('/uploadTrans', function (req, res) {
+router.post('/uploadTransExcel', function (req, res) {
     var exceltojson;
     uploadExcel(req, res, function (err) {
         if (err) {
@@ -325,7 +303,7 @@ router.post('/uploadTrans', function (req, res) {
                     }
                 }
 
-                res.render('viewInputTransExcel');
+                res.redirect('viewTransaction');
             });
         } catch (e) {
             res.json({error_code: 1, err_desc: "Corupted excel file"});
@@ -333,7 +311,7 @@ router.post('/uploadTrans', function (req, res) {
     })
 
 });
-router.post('/uploadTransHand', function (req, res) {
+router.post('/uploadTransaction', function (req, res) {
     var result = req.body;
     Transaction.collection.insert(result, onInsert);
     function onInsert(err, docs) {
@@ -343,27 +321,195 @@ router.post('/uploadTransHand', function (req, res) {
             console.info('%d potatoes were successfully stored.', docs.length);
         }
     }
-    res.render('viewInputTrans');
+    res.redirect('viewTransaction');
 });
 
-router.get('/viewInputTransExcel', function (req, res) {
-    if (req.user) {
-        res.render('viewInputTransExcel',{user:JSON.stringify(req.user)})
-    } else {
-        res.render('login');
-    }
-});
-router.get('/viewStatistics', function (req, res) {
+router.get('/viewTransaction', function (req, res) {
     if (req.user) {
         Transaction.find({}, {_id: 0}, function (err, data) {
             if (err) throw err;
 
             // object of all the users
-            res.render('viewStatistics', {data: JSON.stringify(data)});
+            res.render('viewTransaction', {data: JSON.stringify(data)});
         });
     } else {
         res.render('login');
     }
+});
+router.post('/transactionEdit',function (req,res) {
+
+    Transaction.findOne({id:req.body.id}, function (err, data) {
+        // Handle any possible database errors
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            console.log('Trans EDIT',req.body.id);
+            data.ibname = req.body.ibname|| data.ibname;
+            data.curr = req.body.curr || data.curr;
+            data.time = req.body.time || data.time;
+            data.id = req.body.id || data.id;
+            data.deposit = req.body.deposit || data.deposit;
+            data.balance = req.body.balance || data.balance;
+            data.equity = req.body.equity || data.equity;
+            data.lotvolume = req.body.lotvolume || data.lotvolume;
+            data.usdvolume = req.body.usdvolume || data.usdvolume;
+            data.commision = req.body.commision || data.commision;
+            data.markup = req.body.markup || data.markup;
+            data.ticket = req.body.ticket || data.ticket;
+            data.opentime = req.body.opentime || data.opentime;
+            data.side = req.body.side || data.side;
+            data.amount = req.body.amount || data.amount;
+            // Save the updated document back to the database
+            data.save(function (err, result) {
+                if (err) {
+                    res.status(500).send(err)
+                }
+            });
+            res.redirect('/viewTransaction');
+        }
+    });
+});
+
+router.post('/transactionDelete',function (req,res) {
+
+    Transaction.remove({id: req.body.id}, function(err) {
+        if (!err) {
+            console.log('Trans Delete',req.body.id);
+            res.redirect('/viewTransaction');
+        }
+        else {
+            console.log('TABLEUPDATEEROR',req.body);
+            res.redirect('/viewTransaction');
+        }
+    });
+});
+router.get('/report', function (req, res) {
+    if (req.user) {
+        Transaction.find({}, {_id: 0}, function (err, data) {
+            if (err) throw err;
+
+            // object of all the users
+            res.render('report', {data: JSON.stringify(data)});
+        });
+    } else {
+        res.render('login');
+    }
+});
+
+router.post('/exportExcel', function(req, res){
+    data = JSON.parse(req.body.excelData);
+    var conf ={};
+//  conf.stylesXmlFile = "styles.xml";
+    conf.name = "mysheet";
+    conf.cols = [{
+        caption:'IB Name',
+        type:'string',
+    },
+        {
+            caption:'Currency',
+            type:'string'
+
+        },
+        {
+            caption:'Time',
+            type:'string'
+
+        },
+        {
+            caption:'ID',
+            type:'string'
+
+        },
+        {
+            caption:'Net Deposits',
+            type:'string'
+
+        },
+        {
+            caption:'Balance',
+            type:'string'
+
+        },
+        {
+            caption:'Equity',
+            type:'string'
+
+        },
+        {
+            caption:'Volume (lot)',
+            type:'string'
+
+        },
+        {
+            caption:'Volume (USD)',
+            type:'string'
+
+        },
+        {
+            caption:'Commision',
+            type:'string'
+
+        },
+        {
+            caption:'Markup',
+            type:'string'
+
+        },
+        {
+            caption:'Ticket',
+            type:'string'
+
+        },
+        {
+            caption:'OpenTime',
+            type:'string'
+
+        },
+        {
+            caption:'Side',
+            type:'string'
+
+        },
+        {
+            caption:'Amount',
+            type:'string'
+
+        }];
+    // var data = [{
+    //     name: 'juhi',
+    //     City: 'delhi',
+    //     Age: 20
+    //
+    // },
+    //     {
+    //         name: 'vaishalli',
+    //         City: 'noida',
+    //         Age: 21
+    //
+    //     },{
+    //         name: 'kaushambi',
+    //         City: 'gurgaon',
+    //         Age: 22
+    //
+    //     },{
+    //         name: 'suresh',
+    //         City: 'delhi',
+    //         Age: 70
+    //
+    //     }];
+    console.log('Export Excel: ',data[0]);
+    for(var i=0; i<data.length;i++){
+        var buffer=[data[i].ibname,data[i].curr,data[i].time,data[i].id,data[i].deposit,data[i].balance,data[i].equity,data[i].lotvolume,data[i].usdvolume,data[i].commision,data[i].markup,data[i].ticket,data[i].opentime,data[i].side,data[i].amount];
+        // console.log(buffer);
+        temp.push(buffer);
+//
+    };
+    // console.log(stringify(temp));
+    conf.rows=temp;
+    var result = nodeExcel.execute(conf);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+    res.setHeader("Content-Disposition", "attachment; filename=" + "Report.xlsx");
+    res.end(result, 'binary');
 });
 
 module.exports = router;

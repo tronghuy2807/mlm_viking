@@ -1,0 +1,167 @@
+extends layout
+block append script
+    script(type='text/javascript').
+        function pagination() {
+            var req_num_row = 10;
+            var $tr = jQuery('tbody tr');
+            var total_num_row = $tr.length;
+            var num_pages = 0;
+            if (total_num_row % req_num_row == 0) {
+                num_pages = total_num_row / req_num_row;
+            }
+            if (total_num_row % req_num_row >= 1) {
+                num_pages = total_num_row / req_num_row;
+                num_pages++;
+                num_pages = Math.floor(num_pages++);
+            }
+            for (var i = 1; i <= num_pages; i++) {
+                jQuery('#pagination').append(" <a href='#' class='btn'>"+i+"</a> ");
+            }
+            $tr.each(function (i) {
+                jQuery(this).hide();
+                if (i + 1 <= req_num_row) {
+                    $tr.eq(i).show();
+                }
+            });
+            jQuery('#pagination a').click(function (e) {
+                e.preventDefault();
+                $tr.hide();
+                var page = jQuery(this).text();
+                var temp = page - 1;
+                var start = temp * req_num_row;
+                //alert(start);
+                for (var i = 0; i < req_num_row; i++) {
+                    $tr.eq(start + i).show();
+                }
+            });
+        }
+        jQuery('document').ready(function () {
+            pagination();
+        });
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    style(type='text/css').
+        .pagination > li {
+            display: inline;
+            padding: 0px !important;
+            margin: 0px !important;
+            border: none !important;
+        }
+
+        .modal-backdrop {
+            z-index: -1 !important;
+        }
+
+        /*
+        Fix to show in full screen demo
+        */
+        iframe {
+            height: 700px !important;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 3px 6px !important;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            color: #fff !important;
+            background: #428bca !important;
+            border-color: #357ebd !important;
+            box-shadow: none !important;
+        }
+
+        .btn-danger {
+            color: #fff !important;
+            background: #d9534f !important;
+            border-color: #d9534f !important;
+            box-shadow: none !important;
+        }
+
+        #pagination a {
+            display: inline-block;
+            margin-right: 5px;
+            /*float: left;*/
+            transition: background-color .3s;
+
+        }
+block append content
+    .col-md-9
+        .row
+            .content-box-large
+                h3(style='margin-left:500px') BÁO CÁO THỐNG KÊ
+                .panel-body
+                    form(method='post', action='exportExcel')
+                        button.btn.btn-success(type='submit',style='margin-right:5px',name='excelData',value=data)
+                            | Xuất file Excel
+                    table#myTable.paginated.table.table-striped.table-bordred(cellspacing='0', width='100%')
+                        thead
+                            tr
+                                th IB Name
+                                th Currency
+                                th Time
+                                th ID
+                                th Deposit
+                                th Balance
+                                th Equity
+                                th Volume (lot)
+                                th Volume (usd)
+                                th Commision
+                                th Markup
+                                th Ticket
+                                th Open time
+                                th Side
+                                th Amount
+                        tbody
+                            each d in JSON.parse(data)
+                                tr
+                                    td #{d.ibname}
+                                    td #{d.curr}
+                                    td #{d.time}
+                                    td #{d.id}
+                                    td #{d.deposit}
+                                    td #{d.balance}
+                                    td #{d.equity}
+                                    td #{d.lotvolume}
+                                    td #{d.usdvolume}
+                                    td #{d.commision}
+                                    td #{d.markup}
+                                    td #{d.ticket}
+                                    td #{d.opentime}
+                                    td #{d.side}
+                                    td #{d.amount}
+                    #pagination
