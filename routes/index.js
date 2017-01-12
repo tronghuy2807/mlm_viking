@@ -8,7 +8,6 @@ var xlstojson = require("xls-to-json-lc");
 var xlsxtojson = require("xlsx-to-json-lc");
 
 var nodeExcel = require('excel-export');
-var stringify=require('node-stringify');
 var temp=[];
 
 /*Storage file*/
