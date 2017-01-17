@@ -17,8 +17,8 @@ var Account = new Schema({
     org: String,
     bankacc: String,
     bankbranch: String,
-    userID: String,
-    leaderID: String,
+    id: String,
+    parentId: String,
     addr: String,
     img:String
 });

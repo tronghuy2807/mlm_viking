@@ -71,8 +71,8 @@ router.post('/users/updateProfile', function (req, res) {
             data.org = req.body.org || data.org;
             data.bankacc = req.body.bankacc || data.bankacc;
             data.bankbranch = req.body.bankbranch || data.bankbranch;
-            data.userID = req.body.userID || data.userID;
-            data.leaderID = req.body.leaderID || data.leaderID;
+            data.id = req.body.id || data.id;
+            data.parentId = req.body.parentId || data.parentId;
             data.addr = req.body.addr || data.addr;
             data.phone = req.body.phone || data.phone;
             // Save the updated document back to the database

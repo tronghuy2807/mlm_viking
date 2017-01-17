@@ -174,10 +174,10 @@ block append content
                                             input.form-control(type='text', name="bankbranch")
                                         .form-group
                                             label Mã giao dịch:
-                                            input.form-control(type='text', name="userID")
+                                            input.form-control(type='text', name="id")
                                         .form-group
                                             label Mã giới thiệu:
-                                            input.form-control(type='text', name="leaderID")
+                                            input.form-control(type='text', name="parentId")
                                         .form-group
                                             label Địa chỉ:
                                             input.form-control(type='text', name="addr")
@@ -215,8 +215,8 @@ block append content
                                         td #{d.org}
                                         td #{d.bankacc}
                                         td #{d.bankbranch}
-                                        td #{d.userID}
-                                        td #{d.leaderID}
+                                        td #{d.id}
+                                        td #{d.parentId}
                                         td #{d.addr}
                                         td #{d.phone}
                                         td
@@ -261,10 +261,10 @@ block append content
                                                                         input.form-control(type='text', name="bankbranch",value='#{d.bankbranch}')
                                                                     .form-group
                                                                         label Mã giao dịch:
-                                                                        input.form-control(type='text', name="userID",value='#{d.userID}')
+                                                                        input.form-control(type='text', name="id",value='#{d.id}')
                                                                     .form-group
                                                                         label Mã giới thiệu:
-                                                                        input.form-control(type='text', name="leaderID",value='#{d.leaderID}')
+                                                                        input.form-control(type='text', name="parentId",value='#{d.parentId}')
                                                                     .form-group
                                                                         label Địa chỉ:
                                                                         input.form-control(type='text', name="addr",value='#{d.addr}')
