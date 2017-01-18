@@ -69,7 +69,6 @@ router.post('/register', function (req, res) {
     uploadImg(req, res, function (err) {
         console.log('REGISTER', req.body)
         if (err) {
-            console.log('Error: ', err)
             res.redirect('/');
         } else {
 
@@ -102,13 +101,14 @@ router.post('/register', function (req, res) {
                             if (err) {
                                 return next(err);
                             }
+                            res.redirect('/');
                         });
                     });
                 });
             } else {
                 res.render('register', {error: 'Xác nhận mật khẩu không chính xác!'});
             }
-            res.redirect('/');
+
         }
     });
 });
@@ -223,8 +223,6 @@ router.get('/userTree', function (req, res) {
                 children = children.concat(myList.concat(myL));
                 var outputArray = levelAndSort(children,0);
                 var sum = getMoney(outputArray);
-                // res.json({data: children,sum:sum});
-                console.log(data)
                 res.render('userTree',{data: JSON.stringify(children), sum :sum});
             });
 
@@ -600,19 +598,21 @@ router.get('/mlm/:id', function (req, res) {
 function getMoney(array) {
     var sum = 0;
     for (i = 0; i < array.length; i++) {
-        switch (array[i].level) {
-            case 1:
-                sum = sum + 2 * Number(array[i].lotvolume)
-                break;
-            case 2:
-                sum = sum + 1.5 * Number(array  [i].lotvolume)
-                break;
-            case 3:
-                sum = sum + 1 * Number(array[i].lotvolume)
-                break;
-            case 4:
-                sum = sum + 0.5 * Number(array[i].lotvolume)
-                break;
+        if(array[i].lotvolume!=null) {
+            switch (array[i].level) {
+                case 1:
+                    sum = sum + 2 * Number(array[i].lotvolume)
+                    break;
+                case 2:
+                    sum = sum + 1.5 * Number(array  [i].lotvolume)
+                    break;
+                case 3:
+                    sum = sum + 1 * Number(array[i].lotvolume)
+                    break;
+                case 4:
+                    sum = sum + 0.5 * Number(array[i].lotvolume)
+                    break;
+            }
         }
     }
     return sum;

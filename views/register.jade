@@ -25,9 +25,9 @@ html
                             .content-wrap
                                 h1.caption ĐĂNG KÝ
                                 if(error)
-                                    p #{error}
+                                    p(style = 'color:red') #{error}
                                 if(account)
-                                    p #{account}
+                                    p(style = 'color:red') #{account}
                                 form(role='form', action="/register",method="post", style='max-width: 700px;',enctype='multipart/form-data')
                                     .col-md-12.form-group
                                         input.form-control(type='text',name="fullname", placeholder='Họ tên',required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")

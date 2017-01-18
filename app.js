@@ -48,6 +48,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/mlm_viking');
 
 // catch 404 and forward to error handler

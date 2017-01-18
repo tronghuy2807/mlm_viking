@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7236ceea-570e-426c-981e-49a814184cf8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/uploadImgs/avatar5.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="$PROJECT_DIR$/views/layout.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/userTable.jade" afterPath="$PROJECT_DIR$/views/userTable.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/userTree.jade" afterPath="$PROJECT_DIR$/views/userTree.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/viewTransaction.jade" afterPath="$PROJECT_DIR$/views/viewTransaction.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/register.jade" afterPath="$PROJECT_DIR$/views/register.jade" />
     </list>
     <list id="f60efc58-5ed4-49bf-93a1-ff42b5c67355" name="New changelist" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/demo/angularjs/angular.js" afterPath="$PROJECT_DIR$/public/demo/angularjs/angular.js" />
@@ -43,17 +40,17 @@
       <file leaf-file-name="layout.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/layout.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
+            <state relative-caret-position="735">
               <caret line="49" column="50" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userTree.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="userTree.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/userTree.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
+            <state relative-caret-position="575">
               <caret line="144" column="56" selection-start-line="144" selection-start-column="56" selection-end-line="144" selection-end-column="56" />
               <folding>
                 <marker date="1484727878501" expanded="true" signature="4524:4590" ph="..." />
@@ -72,8 +69,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="226" column="32" selection-start-line="226" selection-start-column="32" selection-end-line="226" selection-end-column="32" />
+            <state relative-caret-position="411">
+              <caret line="103" column="46" selection-start-line="103" selection-start-column="46" selection-end-line="103" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="750">
+              <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -89,31 +96,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transaction.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/transaction.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="userTable.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/userTable.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
+            <state relative-caret-position="2010">
               <caret line="134" column="42" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.jade" pinned="false" current-in-tab="false">
+      <file leaf-file-name="register.jade" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/register.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="67" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="67" />
+            <state relative-caret-position="435">
+              <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -122,7 +119,7 @@
       <file leaf-file-name="viewTransaction.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/viewTransaction.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
+            <state relative-caret-position="4965">
               <caret line="331" column="91" selection-start-line="331" selection-start-column="91" selection-end-line="331" selection-end-column="91" />
               <folding />
             </state>
@@ -132,7 +129,7 @@
       <file leaf-file-name="testTree.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/testTree.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1745">
+            <state relative-caret-position="5550">
               <caret line="370" column="32" selection-start-line="370" selection-start-column="32" selection-end-line="370" selection-end-column="32" />
               <folding />
             </state>
@@ -185,13 +182,11 @@
         <option value="$PROJECT_DIR$/views/uploadExcel.jade" />
         <option value="$PROJECT_DIR$/views/layout1.jade" />
         <option value="$PROJECT_DIR$/views/viewGrid.jade" />
-        <option value="$PROJECT_DIR$/views/register.jade" />
         <option value="$PROJECT_DIR$/views/viewTree.jade" />
         <option value="$PROJECT_DIR$/views/viewInputTrans.jade" />
         <option value="$PROJECT_DIR$/public/paging.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/routes/transaction.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/viewStatistics.jade" />
         <option value="$PROJECT_DIR$/views/viewTable.jade" />
         <option value="$PROJECT_DIR$/views/login.jade" />
@@ -207,8 +202,10 @@
         <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/views/mlm.jade" />
         <option value="$PROJECT_DIR$/views/viewTransaction.jade" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/userTree.jade" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/views/register.jade" />
       </list>
     </option>
   </component>
@@ -516,7 +513,8 @@
       <workItem from="1484582089590" duration="4413000" />
       <workItem from="1484618677912" duration="23140000" />
       <workItem from="1484667091493" duration="6433000" />
-      <workItem from="1484703321294" duration="19059000" />
+      <workItem from="1484703321294" duration="23430000" />
+      <workItem from="1484751105357" duration="885000" />
     </task>
     <task id="LOCAL-00001" summary="update ui">
       <created>1482463945314</created>
@@ -637,11 +635,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484671917299</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="update rose">
+      <created>1484728186838</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1484728186838</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340192000" />
+    <option name="totallyTimeSpent" value="345448000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -729,7 +734,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/uploadImgs/filename.jpg" />
     <entry file="file://$PROJECT_DIR$/public/uploadImgs/register.png" />
     <entry file="file://$PROJECT_DIR$/public/uploadImgs/report.png" />
     <entry file="file://$PROJECT_DIR$/public/css/styles.css">
@@ -820,13 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/www">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
@@ -868,15 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2430">
           <caret line="162" column="50" selection-start-line="162" selection-start-column="50" selection-end-line="162" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/register.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="67" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,7 +872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -906,7 +893,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/testTree.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1745">
+        <state relative-caret-position="5550">
           <caret line="370" column="32" selection-start-line="370" selection-start-column="32" selection-end-line="370" selection-end-column="32" />
           <folding />
         </state>
@@ -914,7 +901,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="735">
           <caret line="49" column="50" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="50" />
           <folding />
         </state>
@@ -922,12 +909,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/viewTransaction.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
+        <state relative-caret-position="4965">
           <caret line="331" column="91" selection-start-line="331" selection-start-column="91" selection-end-line="331" selection-end-column="91" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/userTable.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2010">
+          <caret line="134" column="42" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/uploadImgs/Screenshot from 2017-01-05 18-59-30.png" />
     <entry file="file://$PROJECT_DIR$/models/account.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -936,25 +932,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="226" column="32" selection-start-line="226" selection-start-column="32" selection-end-line="226" selection-end-column="32" />
+        <state relative-caret-position="750">
+          <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/userTable.jade">
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="134" column="42" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
+        <state relative-caret-position="411">
+          <caret line="103" column="46" selection-start-line="103" selection-start-column="46" selection-end-line="103" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/userTree.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
+        <state relative-caret-position="575">
           <caret line="144" column="56" selection-start-line="144" selection-start-column="56" selection-end-line="144" selection-end-column="56" />
           <folding>
             <marker date="1484727878501" expanded="true" signature="4524:4590" ph="..." />
@@ -966,6 +962,14 @@
             <marker date="1484727878501" expanded="true" signature="5504:5589" ph="..." />
             <marker date="1484727878501" expanded="true" signature="5671:5757" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
