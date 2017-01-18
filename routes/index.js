@@ -174,11 +174,60 @@ router.get('/userTable', function (req, res) {
 });
 router.get('/userTree', function (req, res) {
     if (req.user) {
+        var userId = req.query.id;
         Account.find({}, {_id: 0, salt: 0, hash: 0}, function (err, data) {
             if (err) throw err;
+            var myList = [];
+            var myL = [];
+            var children = [];
+            var combine = [];
+            var idList = [];
+            for (i=0;i<data.length;i++){
+                idList.push(data[i].id)
+            }
+            Transaction.find({}, {_id: 0, id: 1, lotvolume: 1}, function (err, response) {
+                if (err) throw err
+                for (var i = 0; i < response.length; i++) {
+                    var indexed = {};
+                    for (var j = 0; j < data.length; j++) {
+                        if (response[i].id === data[j].id) {
+                            indexed.lotvolume = response[i].lotvolume;
+                            data[j].lotvolume = indexed.lotvolume;
+                        }
+                    }
+                }
+                function getChildren(arr, list) {
+                    a = [];
+                    for (j = 0; j < list.length; j++) {
+                        for (i = 0; i < arr.length; i++) {
+                            if (arr[i].parentId === list[j].id) {
+                                myL.push(arr[i]);
+                                a.push(arr[i]);
+                            }
+                        }
+                    }
+                    if (a.length > 0) {
+                        getChildren(data, a);
+                    }
+                }
+                for (m = 0; m < data.length; m++) {
+                    if (data[m].id === userId) {
+                        children.push(data[m]);
+                    }
+                    if (data[m].parentId === userId) {
+                        myList.push(data[m]);
+                    }
+                }
 
-            // object of all the users
-            res.render('userTree', {data: JSON.stringify(data)});
+                getChildren(data, myList);
+                children = children.concat(myList.concat(myL));
+                var outputArray = levelAndSort(children,0);
+                var sum = getMoney(outputArray);
+                // res.json({data: children,sum:sum});
+                console.log(data)
+                res.render('userTree',{data: JSON.stringify(children), sum :sum});
+            });
+
         });
     } else {
         res.render('login');
@@ -491,12 +540,18 @@ router.post('/exportExcel', function (req, res) {
     res.end(result, 'binary');
 });
 /*Caculate %*/
-router.get('/mlm', function (req, res) {
-    Account.find({}, {_id: 0}, function (err, data) {
+router.get('/mlm/:id', function (req, res) {
+    var userId = req.params.id;
+    Account.find({}, {_id: 0, salt: 0, hash: 0}, function (err, data) {
         if (err) throw err;
         var myList = [];
         var myL = [];
         var children = [];
+        var combine = [];
+        var idList = [];
+        for (i=0;i<data.length;i++){
+            idList.push(data[i].id)
+        }
         Transaction.find({}, {_id: 0, id: 1, lotvolume: 1}, function (err, response) {
             if (err) throw err
             for (var i = 0; i < response.length; i++) {
@@ -523,10 +578,10 @@ router.get('/mlm', function (req, res) {
                 }
             }
                 for (m = 0; m < data.length; m++) {
-                    if (data[m].id === "002") {
+                    if (data[m].id === userId) {
                         children.push(data[m]);
                     }
-                    if (data[m].parentId === "002") {
+                    if (data[m].parentId === userId) {
                         myList.push(data[m]);
                     }
                 }
@@ -535,7 +590,9 @@ router.get('/mlm', function (req, res) {
                 children = children.concat(myList.concat(myL));
                 var outputArray = levelAndSort(children,0);
                 var sum = getMoney(outputArray);
-            res.json({data: children,sum:sum});
+            // res.json({data: children,sum:sum});
+            console.log('act',{data: JSON.stringify(data)})
+            res.render('mlm',{data: JSON.stringify(children)});
         });
 
     });
@@ -548,7 +605,7 @@ function getMoney(array) {
                 sum = sum + 2 * Number(array[i].lotvolume)
                 break;
             case 2:
-                sum = sum + 1.5 * Number(array[i].lotvolume)
+                sum = sum + 1.5 * Number(array  [i].lotvolume)
                 break;
             case 3:
                 sum = sum + 1 * Number(array[i].lotvolume)

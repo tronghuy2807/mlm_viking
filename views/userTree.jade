@@ -26,12 +26,14 @@ html
                 var items = [];
                 data.forEach(function (object) {
                     items.push(new primitives.orgdiagram.ItemConfig({
-                        id: object.phone,
-                        parent: object.leaderPhone,
+                        id: object.id,
+                        parent: object.parentId,
                         title: object.fullname,
-                        description: object.email,
+                        email: object.email,
+                        description: object.org,
+                        phone: object.phone,
                         childrenPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
-                        image: "uploadImgs/preview-full-price.png"
+                        image: "uploadImgs/avatar5.png"
                     }))
                 })
                 options.items = items;
@@ -70,13 +72,13 @@ html
                 function getContactTemplate() {
                     var result = new primitives.orgdiagram.TemplateConfig();
                     result.name = "contactTemplate";
-                    result.itemSize = new primitives.common.Size(140, 100);
+                    result.itemSize = new primitives.common.Size(200, 100);
                     result.minimizedItemSize = new primitives.common.Size(3, 3);
                     result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);
                     var itemTemplate = jQuery(
                             '<div class="bp-item bp-corner-all bt-item-frame">'
-                            + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 2px; left: 2px; width: 145px; height: 20px; overflow: hidden;">'
-                            + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 135px; height: 18px; overflow: hidden;">'
+                            + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 2px; left: 2px; width: 195px; height: 20px; overflow: hidden;">'
+                            + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 200px; height: 18px; overflow: hidden;">'
                             + '</div>'
                             + '</div>'
                             + '<div class="bp-item bp-photo-frame" style="top: 26px; left: 2px; width: 50px; height: 60px; overflow: hidden;">'
@@ -128,16 +130,21 @@ html
                                         i.glyphicon.glyphicon-tasks
                                         |  DANH SÁCH NHÀ ĐẦU TƯ
                                 li
-                                    a(href="/viewStatistics")
+                                    a(href="/viewTransaction")
                                         i.glyphicon.glyphicon-tasks
                                         |  QUẢN LÝ GIAO DỊCH
-                                li
-                                    a(href="/viewStatistics")
-                                        i.glyphicon.glyphicon-tasks
-                                        |  THỐNG KÊ
+                                //li
+                                //    a(href="/viewStatistics")
+                                //        i.glyphicon.glyphicon-tasks
+                                //        |  THỐNG KÊ
                 .col-md-9
                     .row
                         .content-box-large
+                            a(href='/viewTransaction')
+                                input.btn.btn-warning(type='button',value='Quay lại')
+                            h4(style='margin-right:5px')
+                                | Lợi nhuận hoa hồng của #{JSON.parse(data)[0].fullname} :
+                                span.label.label-info #{sum} $
                             #basicdiagram(style='width: 100%; height: 99%; border-style: none; border-width: 2px;')
     footer
         .container
