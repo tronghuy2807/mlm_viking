@@ -193,31 +193,23 @@ block append content
                         table#myTable.paginated.table.table-bordred.table-striped
                             thead
                                 th Họ tên
-                                th Địa chỉ email
-                                th Ngày sinh
-                                th Giới tính
-                                th CMT
+                                th Email
                                 th Công ty
                                 th Tài khoản ngân hàng
                                 th Tên ngân hàng
                                 th Mã giao dịch
                                 th Mã giới thiệu
-                                th Địa chỉ
                                 th Điện thoại
                             tbody
                                 each d,i in JSON.parse(data)
                                     tr
                                         td #{d.fullname}
                                         td #{d.email}
-                                        td #{d.birthdate}
-                                        td #{d.sex}
-                                        td #{d.cmt}
                                         td #{d.org}
                                         td #{d.bankacc}
                                         td #{d.bankbranch}
                                         td #{d.id}
                                         td #{d.parentId}
-                                        td #{d.addr}
                                         td #{d.phone}
                                         td
                                             p(data-placement='top', data-toggle='tooltip', title='Sửa')
@@ -242,15 +234,6 @@ block append content
                                                                         label Email:
                                                                         input.form-control(type='text',name="email", value='#{d.email}')
                                                                     .form-group
-                                                                        label Ngày sinh:
-                                                                        input.form-control(type='text',name="birthdate", value='#{d.birthdate}')
-                                                                    .form-group
-                                                                        label Giới tính:
-                                                                        input.form-control(type='text', name="sex",value='#{d.sex}')
-                                                                    .form-group
-                                                                        label Chứng minh thư:
-                                                                        input.form-control(type='text', name="cmt",value='#{d.cmt}')
-                                                                    .form-group
                                                                         label Công ty / Tổ chức:
                                                                         input.form-control(type='text', name="org",value='#{d.org}')
                                                                     .form-group
@@ -265,9 +248,6 @@ block append content
                                                                     .form-group
                                                                         label Mã giới thiệu:
                                                                         input.form-control(type='text', name="parentId",value='#{d.parentId}')
-                                                                    .form-group
-                                                                        label Địa chỉ:
-                                                                        input.form-control(type='text', name="addr",value='#{d.addr}')
                                                                     .form-group
                                                                         label Số điện thoại:
                                                                         input.form-control(type='text', name="phone",value='#{d.phone}')
@@ -302,6 +282,10 @@ block append content
                                                                     button.btn.btn-default(type='button', data-dismiss='modal')
                                                                         span.glyphicon.glyphicon-remove
                                                                         |  Thoát
+                                        td
+                                            p(data-placement='top', data-toggle='tooltip', title='Xem hoa hồng')
+                                                a.btn.btn-success.btn-large(href='/userTree?id=#{d.id}', role='button')
+                                                    span.glyphicon.glyphicon-euro
                         #pagination
 
 
