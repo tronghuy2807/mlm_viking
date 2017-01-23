@@ -146,49 +146,49 @@ block append content
                                     form(role='form', action="/userTableAdd",method="post", style='max-width: 700px;')
                                         .form-group
                                             label Họ và tên:
-                                            input.form-control(type='text',name="fullname")
+                                            input.form-control(type='text',name="fullname",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Tên đăng nhập:
-                                            input.form-control(type='text',name="username")
+                                            input.form-control(type='text',name="username",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Mật khẩu:
-                                            input.form-control(type='password',name="password")
+                                            input.form-control(type='password',name="password",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Xác nhận mật khẩu:
-                                            input.form-control(type='password',name="confirmPass")
+                                            input.form-control(type='password',name="confirmPass",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Email:
-                                            input.form-control(type='text',name="email")
+                                            input.form-control(type='text',name="email",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Ngày sinh:
-                                            input.form-control(type='text',name="birthdate")
+                                            input.form-control(type='text',name="birthdate",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Giới tính:
-                                            input.form-control(type='text', name="sex")
+                                            input.form-control(type='text', name="sex",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Chứng minh thư:
-                                            input.form-control(type='text', name="cmt")
+                                            input.form-control(type='text', name="cmt",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Công ty / Tổ chức:
-                                            input.form-control(type='text', name="org")
+                                            input.form-control(type='text', name="org",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Tài khoản ngân hàng:
-                                            input.form-control(type='text', name="bankacc")
+                                            input.form-control(type='text', name="bankacc",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Tên ngân hàng - Chi nhánh:
-                                            input.form-control(type='text', name="bankbranch")
+                                            input.form-control(type='text', name="bankbranch",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Mã giao dịch:
-                                            input.form-control(type='text', name="id")
+                                            input.form-control(type='text', name="id",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Mã giới thiệu:
-                                            input.form-control(type='text', name="parentId")
+                                            input.form-control(type='text', name="parentId",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Địa chỉ:
-                                            input.form-control(type='text', name="addr")
+                                            input.form-control(type='text', name="addr",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         .form-group
                                             label Số điện thoại:
-                                            input.form-control(type='text', name="phone")
+                                            input.form-control(type='text', name="phone",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                         input.btn.btn-success(type='submit', value='Thêm mới',style='margin-right:5px')
                                         button.btn.btn-default(type='button', data-dismiss='modal')
                                             span.glyphicon.glyphicon-remove

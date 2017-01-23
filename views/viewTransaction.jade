@@ -153,34 +153,34 @@ block append content
                                 form(role='form', action="/uploadTransaction",method="post", style='max-width: 700px;')
                                     .form-group
                                         label Tên nhà  đầu tư:
-                                        input.form-control(type='text',name="ibname")
+                                        input.form-control(type='text',name="ibname",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Mã giao dịch:
-                                        input.form-control(type='text',name="id")
+                                        input.form-control(type='text',name="id",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Tiền đặt cọc:
-                                        input.form-control(type='text',name="deposit")
+                                        input.form-control(type='text',name="deposit",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Số dư:
-                                        input.form-control(type='text',name="balance")
+                                        input.form-control(type='text',name="balance",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Vốn cổ phần:
-                                        input.form-control(type='text', name="equity")
+                                        input.form-control(type='text', name="equity",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Lot:
-                                        input.form-control(type='text', name="lotvolume")
+                                        input.form-control(type='text', name="lotvolume",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Tiền hoa hồng:
-                                        input.form-control(type='text', name="commision")
+                                        input.form-control(type='text', name="commision",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Phiếu:
-                                        input.form-control(type='text', name="ticket")
+                                        input.form-control(type='text', name="ticket",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Giờ mở cửa:
-                                        input.form-control(type='text', name="opentime")
+                                        input.form-control(type='text', name="opentime",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     .form-group
                                         label Tổng giá trị:
-                                        input.form-control(type='text', name="amount")
+                                        input.form-control(type='text', name="amount",required ='', oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')",oninput="this.setCustomValidity('')")
                                     input.btn.btn-success(type='submit', value='Thêm mới',style='margin-right:5px')
                                     button.btn.btn-default(type='button', data-dismiss='modal')
                                         span.glyphicon.glyphicon-remove
@@ -226,7 +226,7 @@ block append content
                                                         .modal-body
                                                             form(role='form', action="/transactionEdit",method="post", style='max-width: 700px;')
                                                                 .form-group
-                                                                    label IB Name:
+                                                                    label Tên nhà  đầu tư:
                                                                     input.form-control(type='text',name="ibname",value='#{d.ibname}')
                                                                 //.form-group
                                                                 //    label Currency:
@@ -235,40 +235,40 @@ block append content
                                                                 //    label Time:
                                                                 //    input.form-control(type='text',name="time",value='#{d.time}')
                                                                 .form-group
-                                                                    label ID:
+                                                                    label Mã giao dịch:
                                                                     input.form-control(type='text',name="id",value='#{d.id}')
                                                                 .form-group
-                                                                    label Net Deposits:
+                                                                    label Tiền đặt cọc:
                                                                     input.form-control(type='text',name="deposit",value='#{d.deposit}')
                                                                 .form-group
-                                                                    label Balance:
+                                                                    label Số dư:
                                                                     input.form-control(type='text',name="balance",value='#{d.balance}')
                                                                 .form-group
-                                                                    label Equity:
+                                                                    label Vốn cổ phần:
                                                                     input.form-control(type='text', name="equity",value='#{d.equity}')
                                                                 .form-group
-                                                                    label Volume (lot):
+                                                                    label Lot:
                                                                     input.form-control(type='text', name="lotvolume",value='#{d.lotvolume}')
                                                                 //.form-group
                                                                 //    label Volume (USD):
                                                                 //    input.form-control(type='text', name="usdvolume",value='#{d.usdvolume}')
                                                                 .form-group
-                                                                    label Commision:
+                                                                    label Tiền hoa hồng:
                                                                     input.form-control(type='text', name="commision",value='#{d.commision}')
                                                                 //.form-group
                                                                 //    label Markup:
                                                                 //    input.form-control(type='text', name="markup",value='#{d.markup}')
                                                                 .form-group
-                                                                    label Ticket:
+                                                                    label Phiếu:
                                                                     input.form-control(type='text', name="ticket",value='#{d.ticket}')
                                                                 .form-group
-                                                                    label OpenTime:
+                                                                    label Giờ mở cửa:
                                                                     input.form-control(type='text', name="opentime",value='#{d.opentime}')
                                                                 //.form-group
                                                                 //    label Side:
                                                                 //    input.form-control(type='text', name="side",value='#{d.side}')
                                                                 .form-group
-                                                                    label Amount:
+                                                                    label Tổng giá trị:
                                                                     input.form-control(type='text', name="amount",value='#{d.amount}')
                                                                 input.btn.btn-success(type='submit', value='Cập nhật',style='margin-right:5px')
                                                                 button.btn.btn-default(type='button', data-dismiss='modal')
