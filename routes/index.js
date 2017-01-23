@@ -207,6 +207,7 @@ router.get('/userTree', function (req, res) {
                         }
                     }
                     if (a.length > 0) {
+                        console.log('Array recusive: ',a[0].username)
                         getChildren(data, a);
                     }
                 }

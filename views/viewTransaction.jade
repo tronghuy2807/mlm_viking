@@ -153,49 +153,34 @@ block append content
                             .modal-body
                                 form(role='form', action="/uploadTransaction",method="post", style='max-width: 700px;')
                                     .form-group
-                                        label IB Name:
+                                        label Tên nhà  đầu tư:
                                         input.form-control(type='text',name="ibname")
                                     .form-group
-                                        label Currency:
-                                        input.form-control(type='text',name="curr")
-                                    .form-group
-                                        label Time:
-                                        input.form-control(type='text',name="time")
-                                    .form-group
-                                        label ID:
+                                        label Mã giao dịch:
                                         input.form-control(type='text',name="id")
                                     .form-group
-                                        label Net Deposits:
+                                        label Tiền đặt cọc:
                                         input.form-control(type='text',name="deposit")
                                     .form-group
-                                        label Balance:
+                                        label Số dư:
                                         input.form-control(type='text',name="balance")
                                     .form-group
-                                        label Equity:
+                                        label Vốn cổ phần:
                                         input.form-control(type='text', name="equity")
                                     .form-group
-                                        label Volume (lot):
+                                        label Lot:
                                         input.form-control(type='text', name="lotvolume")
                                     .form-group
-                                        label Volume (USD):
-                                        input.form-control(type='text', name="usdvolume")
-                                    .form-group
-                                        label Commision:
+                                        label Tiền hoa hồng:
                                         input.form-control(type='text', name="commision")
                                     .form-group
-                                        label Markup:
-                                        input.form-control(type='text', name="markup")
-                                    .form-group
-                                        label Ticket:
+                                        label Phiếu:
                                         input.form-control(type='text', name="ticket")
                                     .form-group
-                                        label OpenTime:
+                                        label Giờ mở cửa:
                                         input.form-control(type='text', name="opentime")
                                     .form-group
-                                        label Side:
-                                        input.form-control(type='text', name="side")
-                                    .form-group
-                                        label Amount:
+                                        label Tổng giá trị:
                                         input.form-control(type='text', name="amount")
                                     input.btn.btn-success(type='submit', value='Thêm mới',style='margin-right:5px')
                                     button.btn.btn-default(type='button', data-dismiss='modal')
