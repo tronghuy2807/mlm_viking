@@ -291,12 +291,10 @@ router.post('/userTableAdd', function (req, res) {
             parentId: req.body.parentId,
             addr: req.body.addr
         }), req.body.password, function (err, account) {
-            console.log('ADDTABLE', req.body)
             if (err) {
-                // return res.render('register', {account: 'Tài khoản đã tồn tại!'});
+                res.redirect('/userTable');
             }
             passport.authenticate('local')(req, res, function () {
-
                 req.session.save(function (err) {
                     if (err) {
                         return next(err);
@@ -305,6 +303,8 @@ router.post('/userTableAdd', function (req, res) {
                 });
             });
         });
+    } else {
+        res.redirect('/userTable');
     }
 });
 /*Transaction*/

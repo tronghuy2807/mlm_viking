@@ -57,6 +57,7 @@ block append script
                 }
             }
         }
+
     style(type='text/css').
         .pagination > li {
             display: inline;
@@ -126,6 +127,10 @@ block append content
             .content-box-large
 
                     h3(style='margin-left:500px') DANH SÁCH NHÀ ĐẦU TƯ
+                    if(error)
+                        p(style = 'color:red') #{error}
+                    if(account)
+                        p(style = 'color:red') #{account}
                     input#myInput(type='text', onkeyup='myFunction()', placeholder='Tìm kiếm theo tên..',style='margin-right:5px;border-radius:2px')
                     input.btn.btn-info(data-title='Add', data-toggle='modal', data-target='#add',value='Thêm mới',style='margin-right:5px')
                     //a(href='/userTree')
@@ -283,8 +288,9 @@ block append content
                                                                         span.glyphicon.glyphicon-remove
                                                                         |  Thoát
                                         td
+
                                             p(data-placement='top', data-toggle='tooltip', title='Xem hoa hồng')
-                                                a.btn.btn-success.btn-large(href='/userTree?id=#{d.id}', role='button')
+                                                a.btn.btn-success.btn-large(href='/userTree?id=#{d.id}', role='button',name=)
                                                     span.glyphicon.glyphicon-euro
                         #pagination
 
